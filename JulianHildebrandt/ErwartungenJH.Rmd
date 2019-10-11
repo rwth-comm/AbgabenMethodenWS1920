@@ -1,0 +1,13 @@
+---
+title: "Erwartungen"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Einblick in die didaktischen Konzepte der Dozenten
+* Viel Spaß im Umgang mit R
+* usw. 
