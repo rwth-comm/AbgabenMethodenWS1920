@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Meine Erwartungen 
 * Erklärung der Programme 
-* Spaß am programmieren bekommen 
+* Spaß am programmieren 
 * Grundlagenwissen 
 * Wissen was in die Tiefe geht 
 * Zusammenhänge verstehen 
@@ -18,3 +18,5 @@ knitr::opts_chunk$set(echo = TRUE)
 * verständliche Erklärungen bei Technikfragen 
 * R kennenlernen 
 * S und SStudios kennenlernen 
+* Spannende Seminare 
+
