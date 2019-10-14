@@ -4,7 +4,7 @@ Erste Hausaufgabe
 #### Meine Erwartungen
 
   - Erklärung der Programme
-  - Spaß am programmieren bekommen
+  - Spaß am programmieren
   - Grundlagenwissen
   - Wissen was in die Tiefe geht
   - Zusammenhänge verstehen
@@ -13,3 +13,4 @@ Erste Hausaufgabe
   - verständliche Erklärungen bei Technikfragen
   - R kennenlernen
   - S und SStudios kennenlernen
+  - Spannende Seminare
