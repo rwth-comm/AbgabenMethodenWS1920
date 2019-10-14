@@ -1,0 +1,13 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwatungen
+* Die neuen Programme anwenden zu können
+* Erweiterung von Kompetenzen
+* Gute gemeinsame Projektarbeit.
