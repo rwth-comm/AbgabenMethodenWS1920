@@ -1,5 +1,5 @@
 ---
-title: "Erwartungen"
+title: "Erste Hausaufgabe"
 output: github_document
 ---
 
@@ -7,7 +7,5 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Meine Erwartungen
-* Spannende Fragen
-* Tolle Ergebnisse
-* Motivierte Mitarbeit
+#### Meine Erwartungen
+* Viel Spaß mit Markdown und R.
