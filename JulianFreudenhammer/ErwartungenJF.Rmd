@@ -1,0 +1,10 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+#### Meine Erwartungen
+* Etwas neues lernen
+* R verstehen
+* Fit mit _Markdown_ werden
+* Einen tollen [link](www.9gag.com) setzen, der auf eine Website führt, der tatsächlich funktioniert.

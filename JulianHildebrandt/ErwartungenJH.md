@@ -1,9 +1,6 @@
-Erwartungen
+Erste Hausaufgabe
 ================
 
-Meine Erwartungen
------------------
+#### Meine Erwartungen
 
--   Spannende Fragen
--   Tolle Ergebnisse
--   Motivierte Mitarbeit
+-   Viel Spaß mit Markdown und R.
