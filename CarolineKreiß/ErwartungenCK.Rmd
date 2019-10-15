@@ -1,0 +1,14 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Markdown intuitiv beherrschen
+* Grundkenntnisse von R kennenlernen
+* Grundkenntnisse von R anwenden können
+* Anwendungen von R mit Praxisbezug kennenlernen
