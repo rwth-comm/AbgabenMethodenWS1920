@@ -3,4 +3,4 @@ Erste Hausaufgabe
 
 #### Meine Erwartungen
 
-\*prüfungsorientierte Übungen und Erklärung
+*prüfungsorientierte Übungen *konkrete Erklärungen auf die Prozesse
