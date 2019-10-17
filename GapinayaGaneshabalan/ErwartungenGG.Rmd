@@ -1,0 +1,14 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Umgang mit Markdown
+* Umgang mit R
+* quantitative Forschungsmethoden
+* hoffentlich viel Spaß und wenig Verzweiflung 
