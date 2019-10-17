@@ -1,0 +1,13 @@
+---
+title: "Erste Hausaufgabe "
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Erwartungen 
+* Lernen mit RStudio umzugehen 
+* erfahren inwiefern das Seminar klausurrelevant ist 
+* ansonsten habe ich keine Erwartungen und lasse mich überraschen
