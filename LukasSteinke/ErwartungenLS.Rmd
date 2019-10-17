@@ -8,4 +8,5 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* Viel Spaß mit Markdown und R.
+* Umgang mit _R_ lernen
+* Gelerntes Wissen über _R_ praktisch anwenden können

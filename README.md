@@ -8,6 +8,6 @@ Namen anlegen.
 
 In diesem Verzeichnis dürfen Sie Ihre Hausaufgaben speichern.
 
-Bitte verändern Sie nicht, die Inhalte ihrer Kommilitonen.
+Bitte verändern Sie nicht die Inhalte ihrer Kommilitonen.
 
 Jegliche Änderung an fremden Inhalten ist auf Github nachvollziehbar.

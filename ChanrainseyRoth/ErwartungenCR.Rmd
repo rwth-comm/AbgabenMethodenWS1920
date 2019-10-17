@@ -6,6 +6,7 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 #### Meine Erwartungen
-* Viel Spaß mit Markdown und R.
+* Wissen über wissenschaftliches Arbeiten vertiefen
+* statistische Analysen mithilfe von R
+* berufsqualifizierende Kompetenzen erwerben

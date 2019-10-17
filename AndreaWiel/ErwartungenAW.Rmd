@@ -7,5 +7,6 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### Meine Erwartungen
-* Viel Spaß mit Markdown und R.
+#### Meine Erwartungen:
+* gutes Grundverständnis von R
+* Einblicke in die Anwendungsmöglichkeiten
