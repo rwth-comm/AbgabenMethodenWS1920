@@ -8,4 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* Viel Spaß mit Markdown und R.
+* Umgang mit Markdown
+* Umgang mit R
+* quantitative Forschungsmethoden
+* hoffentlich viel Spaß und wenig Verzweiflung 
