@@ -1,0 +1,15 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#### Meine Erwartungen
+
+* Viel zu R zu lernen
+* Spaß am Lernen zu haben
+* Von dem Wissen der anderen inspiriert zu werden
+
+
