@@ -1,5 +1,5 @@
 ---
-title: "Erste Hausaufgabe"
+title: "Untitled"
 output: github_document
 ---
 
@@ -8,6 +8,5 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* R verstehen und anwenden können
-* Vorteile für berufliches Umfeld kennenlernen
 
+* blablabla

@@ -8,6 +8,5 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* R verstehen und anwenden können
-* Vorteile für berufliches Umfeld kennenlernen
-
+* Nicht zu viel Informatik
+* Dass sogar ein so ödes Thema, Spaß machen kann
