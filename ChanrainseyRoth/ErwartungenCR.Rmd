@@ -1,0 +1,12 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#### Meine Erwartungen
+* Wissen über wissenschaftliches Arbeiten vertiefen
+* statistische Analysen mithilfe von R
+* berufsqualifizierende Kompetenzen erwerben

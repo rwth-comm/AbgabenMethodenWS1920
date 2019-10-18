@@ -1,0 +1,13 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Die Programmiersprache R erlernen und anwenden können
+* Freude daran finden
+* Vorteile in der Berufswelt sichern
