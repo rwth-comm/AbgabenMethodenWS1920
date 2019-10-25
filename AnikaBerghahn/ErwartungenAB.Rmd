@@ -8,7 +8,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-
-* Sicherer Umgang mit R
- * Verständnis der Grundlagen 
- * Ein Gefühl dafür bekommen, wie man mit unbekannten Problemen umgeht
+* Die Grundlagen von R erlernen
+* Neue empirische Forschungsmethoden entdecken
+* Spaß an den Aufgaben und der Gruppenarbeit

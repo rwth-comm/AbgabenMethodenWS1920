@@ -1,6 +1,8 @@
-Untitled
+Erste Hausaufgabe
 ================
 
 #### Meine Erwartungen
 
-  - blablabla
+  - Sicherer Umgang mit R
+  - Verständnis der Grundlagen
+  - Ein Gefühl dafür bekommen, wie man mit unbekannten Problemen umgeht
