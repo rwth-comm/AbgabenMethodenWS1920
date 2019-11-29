@@ -1,16 +1,10 @@
-Deskriptive Statistik
-================
-JRH and ACV
-29 11 2019
-
 Dies sind die desktiptiven Statistiken für den Datensatz.
 =========================================================
 
-Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen ins Bett legen lassen würden.
+Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter,
+als von einem Menschen ins Bett legen lassen würden.
 
-``` r
-dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
-```
+    dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
 
     ##           vars  mean    sd median min max
     ## age          1 32.25 13.83   26.0  19  81
@@ -22,14 +16,10 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 Histogramme.
 ============
 
-``` r
-dataset %>% ggplot() +  aes(x = robo_bed) + geom_histogram(bins = 30, fill="red")
-```
+    dataset %>% ggplot() +  aes(x = robo_bed) + geom_histogram(bins = 30, fill="red")
 
-![](DS_HildebrandtCalero_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](DS_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-``` r
-dataset %>% ggplot() +  aes(x = human_bed) + geom_histogram(bins = 30, fill="blue")
-```
+    dataset %>% ggplot() +  aes(x = human_bed) + geom_histogram(bins = 30, fill="blue")
 
-![](DS_HildebrandtCalero_files/figure-markdown_github/unnamed-chunk-2-2.png)
+![](DS_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-2-2.png)
