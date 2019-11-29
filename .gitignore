@@ -28,3 +28,4 @@ rsconnect/
 .DS_Store
 test.R
 data
+*/robo_pflege.rds
