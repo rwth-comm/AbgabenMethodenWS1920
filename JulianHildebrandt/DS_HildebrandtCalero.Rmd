@@ -2,7 +2,7 @@
 title: "Deskriptive Statistik"
 author: "JRH and ACV"
 date: "29 11 2019"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
