@@ -1,0 +1,15 @@
+---
+title: "Erwartungen"
+author: "Theresa Laubach"
+date: "5 11 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Meine Erwartungen
+* Grundkenntnisse in R erlangen
+* Vertiefung und Anwendung von Forschungsmethoden
+* gute Zusammenarbeit
