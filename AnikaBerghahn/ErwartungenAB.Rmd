@@ -8,6 +8,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* R verstehen und anwenden können
-* Vorteile für berufliches Umfeld kennenlernen
-
+* Die Grundlagen von R erlernen
+* Neue empirische Forschungsmethoden entdecken
+* Spaß an den Aufgaben und der Gruppenarbeit

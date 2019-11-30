@@ -8,6 +8,4 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* R verstehen und anwenden können
-* Vorteile für berufliches Umfeld kennenlernen
-
+* Neue Kompetenzen erlernen und technische Prozesse besser verstehen können.

@@ -6,8 +6,10 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 #### Meine Erwartungen
-* R verstehen und anwenden können
-* Vorteile für berufliches Umfeld kennenlernen
+
+* Viel zu R zu lernen
+* Spaß am Lernen zu haben
+* Von dem Wissen der anderen inspiriert zu werden
+
 
