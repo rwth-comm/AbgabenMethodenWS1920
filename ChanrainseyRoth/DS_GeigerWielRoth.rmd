@@ -1,0 +1,14 @@
+---
+title: "DS_GeigerWielRoth"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Dies sind die desktiptiven Statistiken für den Datensatz.
+Man sieht deskriptiv, dass...
+```{r}
+
+```
+
