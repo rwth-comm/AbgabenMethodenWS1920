@@ -1,0 +1,27 @@
+---
+title: "DS_Markdown"
+output: html_document
+---
+
+### **Dies sind die desktiptiven Statistiken für den Datensatz.**
+###### Man sieht deskriptiv, dass die Probanden ihren Körper sowohl von einem Menschen als auch von einem Roboter pflegen lassen würden. Jedoch ist eine leichte Tendenz hin zur Pflege vom Menschen erkennbar. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+```{r}
+datensatz %>% select(age, gender, robo_body, human_body) %>%psych::describe()
+```
+### **Histogramme.**
+```{r}
+datensatz %>% ggplot() + aes(x=human_body) + geom_histogram(bins = 30, fill="red")
+```
+```{r}
+
+datensatz %>% select(robo_body) %>% ggplot() + aes(x=robo_body) + geom_histogram(bins = 30, fill="blue")
+```
