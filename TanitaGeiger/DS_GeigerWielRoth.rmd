@@ -29,7 +29,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-##Histogramme
+##  Histogramme
 
 ```{r}
 library(tidyverse)
@@ -47,7 +47,7 @@ datensatz %>% select(human_toilett) %>% psych::describe()
 datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="green")
 ```
 
-##Matrix
+## Matrix
 
 ```{r}
 datensatz <- readRDS("robo_pflege.rds")
