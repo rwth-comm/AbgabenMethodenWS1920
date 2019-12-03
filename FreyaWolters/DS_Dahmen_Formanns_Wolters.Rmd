@@ -1,2 +1,28 @@
 ---
-title: "Hausaufgabe"
+title: "Statistik"
+author: "JD and SF and FW"
+date: "03 12 2019"
+output: md_document
+---
+
+Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen als von einem Roboter füttern lassen würden.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+dataset <- readRDS("robo_pflege.rds")
+dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
+```
+
+```{r warning=FALSE}
+dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
+# vars, mean, sd, median, min, max(psych::describe(dataset.short))
+```
+
+# Histogramme
+
+```{r warning=FALSE}
+dataset %>% ggplot() +  aes(x = robo_food) + geom_histogram(bins = 30, fill="red")
+dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="blue")
+```
