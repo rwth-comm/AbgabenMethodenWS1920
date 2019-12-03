@@ -1,6 +1,6 @@
 ---
 title: "DS_GeigerWielRoth"
-output: md_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -39,3 +39,10 @@ datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom
 
 ```
 
+## mit Pipe
+
+datensatz %>% select(human_toilett) %>% psych::describe()
+
+## ohne Pipe
+
+psych::describe(select(datensatz)human_toilett))
