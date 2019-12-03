@@ -1,14 +1,41 @@
 ---
 title: "DS_GeigerWielRoth"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # Dies sind die desktiptiven Statistiken für den Datensatz.
-Man sieht deskriptiv, dass...
+Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen beim Toilettengang helfen lassen würden.
+
 ```{r}
+datensatz <- readRDS("robo_pflege.rds")
+
+datensatz_kurz <- datensatz[,c("age", "gender", "kut", "human_toilett", "robo_toilett")]
+
+datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
+
+
+```
+
+
+
+```{r}
+library(tidyverse)
+
+datensatz <- readRDS("robo_pflege.rds")
+
+datensatz <- names()
+
+datensatz %>% select(robo_toilett) %>% psych::describe()
+
+datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="red")
+
+```
+
+```{r}
+datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="blue")
 
 ```
 
