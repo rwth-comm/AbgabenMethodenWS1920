@@ -55,5 +55,13 @@ datensatz_kurz <- datensatz[,c("age", "gender", "kut", "human_toilett", "robo_to
 datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
 
+## mit Pipe
+
+datensatz %>% select(human_toilett) %>% psych::describe()
+
+## ohne Pipe
+
+psych::describe(select(datensatz)human_toilett))
+
 
 
