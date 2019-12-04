@@ -1,7 +1,6 @@
 Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter,
 als von einem Menschen auf die Toilette begleiten lassen würden.
 
-
     #mit pipe
     datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::describe() %>% select( vars, mean, sd, median, min, max)
 
