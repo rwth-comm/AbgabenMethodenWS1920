@@ -24,6 +24,5 @@ datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::descri
 datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="purple")
 
 datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="yellow")
-
 ```
 
