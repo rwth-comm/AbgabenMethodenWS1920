@@ -8,6 +8,7 @@ Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von ei
 
 ```{r}
 library(tidyverse)
+library(ggplot2)
 
 datensatz <- readRDS("robo_pflege.rds")
 
@@ -33,15 +34,6 @@ datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom
 
 ```
 
-## mit Pipe
-```{r}
-datensatz_kurz %>% psych::describe() %>% select()
-```
 
-
-## ohne Pipe
-```{r}
-psych::describe(select(datensatz)human_toilett)
-```
 
 
