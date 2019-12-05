@@ -1,0 +1,30 @@
+---
+title: "DS_GesselPohlmannSinani"
+author: Xenia Gessel, Lena Pohlmann, Linda Sinani
+date: 04.12.19
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+data  <- readRDS("robo_pflege.rds")
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r}
+# Mit Pipe 
+data %>% select(age, gender, robo_hair_cut, human_hair_cut) %>% psych::describe() %>% select( vars, mean, sd, median, min, max)
+
+# Ohne Pipe 
+psych::describe(select(data, age, gender, robo_hair_cut, human_hair_cut))
+
+data %>% select(robo_hair_cut) %>% ggplot() + aes(x = robo_hair_cut) + geom_histogram(bins = 15, fill="yellow")
+
+data %>% select(human_hair_cut) %>% ggplot() + aes(x = human_hair_cut) + geom_histogram(bins = 15, fill="green")
+```
+
+
+Die Diagramme zeigen, dass sich die Probanden eher von einem Menschen als von einem Roboter die Haare schneiden lassen würden. 

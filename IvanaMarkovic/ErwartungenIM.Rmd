@@ -6,8 +6,10 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 #### Meine Erwartungen
-* Einarbeitung in R und Fortschritte in der Anwendung
-* praktische Anwendung sozialwissenschaftlicher Methoden
-* spannende Projekte und Erkenntnisse
+
+* Viel zu R zu lernen
+* Spaß am Lernen zu haben
+* Von dem Wissen der anderen inspiriert zu werden
+
+

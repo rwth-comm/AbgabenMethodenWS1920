@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #### Meine Erwartungen
-* Einarbeitung in R und Fortschritte in der Anwendung
-* praktische Anwendung sozialwissenschaftlicher Methoden
-* spannende Projekte und Erkenntnisse
+
+* Sicherer Umgang mit R
+ * Verständnis der Grundlagen 
+ * Ein Gefühl dafür bekommen, wie man mit unbekannten Problemen umgeht

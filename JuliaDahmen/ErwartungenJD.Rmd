@@ -1,0 +1,15 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Grundkenntnisse der Programme im Seminar erlernen
+* Grundkenntnisse ausbauen
+* Erlernen neuer Methoden
+* Lernen durch Fehler 
+* Ausbau der Kommunikations- und Teamfähigkeit durch Gruppenarbeiten
