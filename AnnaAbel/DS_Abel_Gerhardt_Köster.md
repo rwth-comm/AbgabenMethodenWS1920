@@ -35,9 +35,9 @@ dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="bl
 
 # ohne Pipe
 ```{r}
-# psych::describe(datensatz(select(robo_food)))
+# psych::describe(dataset(select(robo_food)))
 ```
 # mit Pipe
 ```{r}
-# datensatz %>% select(robo_food)
+# dataset %>% select(robo_food)
 ```
