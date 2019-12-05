@@ -25,22 +25,22 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 dataset %>% ggplot() +  aes(x = robo_food) + geom_histogram(bins = 30, fill="red")
 ```
 
-![](BSP_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="blue")
 ```
 
-![](BSP_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
 # ohne Pipe
 
 ``` r
-# psych::describe(datensatz(select(robo_food)))
+# psych::describe(dataset(select(robo_food)))
 ```
 
 # mit Pipe
 
 ``` r
-# datensatz %>% select(robo_food)
+# dataset %>% select(robo_food)
 ```
