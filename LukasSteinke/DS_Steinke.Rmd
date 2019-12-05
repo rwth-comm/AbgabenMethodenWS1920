@@ -1,9 +1,9 @@
-
 ---
 title: "Deskriptive Statistik"
 author: "Lukas Steinke"
 date: "29 11 2019"
-output: github_document
+output: md_document
+
 
 
 ---
