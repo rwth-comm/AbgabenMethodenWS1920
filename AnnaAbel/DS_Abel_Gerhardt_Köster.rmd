@@ -14,7 +14,7 @@ dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
 ```
 
 # Dies sind die desktiptiven Statistiken für den Datensatz.
-Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen füttern lassen würden. 
+Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen, als von einem Roboter füttern lassen würden. 
 ```{r warning=FALSE}
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
 ```
