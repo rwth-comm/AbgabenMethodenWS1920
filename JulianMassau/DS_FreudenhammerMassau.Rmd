@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+author: "Julian Freudenhammer"
+date: "29 11 2019"
+output: html_document
+---
+Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen, als von einem Roboter die Haare schneiden lassen würden.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+```{r}
+datensatz %>% names()
+psych::describe(datensatz)
+datensatz %>% select(human_hair_cut, robo_hair_cut) %>% psych::describe()
+datensatz %>% select(human_hair_cut)%>% ggplot() + aes(x = human_hair_cut) + geom_histogram()
+datensatz %>% select(robo_hair_cut)%>% ggplot() + aes(x = robo_hair_cut) + geom_histogram()
+```
