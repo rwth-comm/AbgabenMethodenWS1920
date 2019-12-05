@@ -32,3 +32,12 @@ dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="bl
 ```
 
 ![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+
+# ohne Pipe
+```{r}
+# psych::describe(datensatz(select(robo_food)))
+```
+# mit Pipe
+```{r}
+# datensatz %>% select(robo_food)
+```
