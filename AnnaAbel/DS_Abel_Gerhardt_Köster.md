@@ -1,6 +1,6 @@
 Deskriptive Statistik
 ================
-Abel and Gerhardt and Köster
+Abel and Gerhardt and Köster  
 04 12 2019
 
 # Dies sind die desktiptiven Statistiken für den Datensatz.
@@ -25,10 +25,10 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 dataset %>% ggplot() +  aes(x = robo_food) + geom_histogram(bins = 30, fill="red")
 ```
 
-![](AnnaAbel/figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="blue")
 ```
 
-![](AnnaAbel/figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
