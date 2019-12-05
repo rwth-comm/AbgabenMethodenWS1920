@@ -1,0 +1,28 @@
+---
+title: "DS_GaneshabalanKleinStuhlmann"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+datensatz <- readRDS("robo_pflege.rds")
+
+library(tidyverse)
+
+```
+
+Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen auf die Toilette begleiten lassen würden.
+```{r}
+#mit pipe
+datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::describe() %>% select( vars, mean, sd, median, min, max)
+
+#umschreiben ohne pipe
+#psych::describe(select(datensatz, age, gender, robo_toilett, human_toilett))
+
+datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="purple")
+
+datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="yellow")
+```
+
