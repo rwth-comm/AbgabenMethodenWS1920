@@ -25,7 +25,7 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 dataset %>% ggplot() +  aes(x = robo_food) + geom_histogram(bins = 30, fill="red")
 ```
 
-![](figure-markdown_strict/BSP_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](DS_Abel_Gerhardt_Köster_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
 dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="blue")
