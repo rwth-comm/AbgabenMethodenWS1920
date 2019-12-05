@@ -1,0 +1,34 @@
+
+---
+title: "Deskriptive Statistik"
+author: "Lukas Steinke"
+date: "29 11 2019"
+output: github_document
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+datensatz <- readRDS("robo_pflege.rds")
+
+```
+Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen waschen lassen würden.
+
+```{r warning= F}
+##Pipe
+datensatz_kurz <- datensatz %>% select(age, gender, robo_wash, human_wash)
+datensatz_kurz %>% psych::describe() %>% select (vars, mean, sd, median, min, max)
+
+##ohne Pipe
+#psych::describe(select(datensatz, age, gender, robo_wash, human_wash))
+```
+
+## Histogramme
+```{r warning= F}
+datensatz %>% ggplot() +  aes(x = robo_wash) + geom_histogram(bins = 30, fill="red")
+datensatz %>% ggplot() +  aes(x = human_wash) + geom_histogram(bins = 30, fill="blue")
+```
