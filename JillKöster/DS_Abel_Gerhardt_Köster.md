@@ -1,6 +1,6 @@
 Deskriptive Statistik
 ================
-Abel and Gerhardt and Köster
+Abel and Gerhardt and Köster  
 04 12 2019
 
 # Dies sind die desktiptiven Statistiken für den Datensatz.
