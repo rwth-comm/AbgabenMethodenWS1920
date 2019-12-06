@@ -1,0 +1,28 @@
+---
+title: "Deskriptive Statistik"
+author: "BW and CH"
+date: "05 12 2019"
+output: md_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+library(tidyverse)
+library(ggplot2)
+datensatz <- readRDS("robo_pflege.rds")
+dataset.short <- datensatz[,c("age","gender", "kut", "robo_body","human_body")]
+```
+# Dies sind die deskriptiven Statistiken für den Datensatz.
+Man sieht deskriptiv, dass sich die Probanden ihren Körper insgesamt sowohl von einem Menschen als auch von einem Roboter pflegen lassen würden. Jedoch ist eine leichte Tendenz zur menschlichen Pflege ersichtlich.
+```{r warning=FALSE}
+
+dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
+```
+#### **Histogramme.**
+```{r warning=FALSE}
+datensatz %>% ggplot() + aes(x = robo_body) + geom_histogram(bins = 30, fill="red")
+
+datensatz %>% ggplot() + aes(x = human_body) + geom_histogram(bins = 30, fill="blue")
+```
