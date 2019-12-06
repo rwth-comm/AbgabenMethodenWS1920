@@ -10,26 +10,8 @@
 
 ![](Diagramme_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
-Todo:
-=====
-
-1. richtige Werte CHECK!
-========================
-
-2. Beschriftungen CHECK!
-========================
-
-3. Fehlerbalken CHECK!
-======================
-
-4. Optik CHECK!
-===============
-
-5. y-Achse? CHECK!
-==================
-
-6. Abspeichern?
-===============
+Nach Anpassungen:
+=================
 
     datensatz %>% 
       filter(gender != "keine Angabe") %>% 

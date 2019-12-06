@@ -30,13 +30,7 @@ ggplot(datensatz) +
  theme_linedraw()
 ```
 
-# Todo:
-# 1. richtige Werte CHECK!
-# 2. Beschriftungen CHECK!
-# 3. Fehlerbalken CHECK!
-# 4. Optik CHECK!
-# 5. y-Achse? CHECK!
-# 6. Abspeichern?
+# Nach Anpassungen:
 
 
 ```{r}
