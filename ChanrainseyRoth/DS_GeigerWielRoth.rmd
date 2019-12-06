@@ -1,6 +1,6 @@
 ---
 title: "DS_GeigerWielRoth"
-output: md_document
+output: github_document
 ---
 
 
