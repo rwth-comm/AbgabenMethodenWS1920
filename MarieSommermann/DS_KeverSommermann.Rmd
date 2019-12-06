@@ -1,0 +1,47 @@
+---
+title: "DS_KeverSommermann"
+author: "Katja Kever, Marie Sommermann"
+date: "4 12 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+```{r}
+datensatz.short <- datensatz[, c("age", "gender", "robo_food", "human_food")]
+```
+
+
+```{r}
+datensatz.short %>% psych::describe()
+```
+Aus den Daten lässt sich ablesen, dass sich die Leute eher von Menschen füttern lassen würden als von Robotern. Generell würden sich aber auch viele von Robotern füttern lassen.
+
+```{r}
+datensatz.short %>% ggplot() + aes(x = robo_food) + geom_histogram(bins = 30, fill = "red")
+```
+
+```{r}
+datensatz.short %>% ggplot() + aes(x = human_food) + geom_histogram(bins = 30, fill = "green")
+```
+
+## Code mit Pipe
+```{r}
+datensatz.short %>% psych::describe()
+```
+
+## Code ohne Pipe
+```{r}
+psych::describe(datensatz.short)
+```
+

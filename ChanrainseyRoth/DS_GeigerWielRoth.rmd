@@ -26,7 +26,11 @@ datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max
 ```{r warning=FALSE}
 datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="red")
 
+```
+
+```{r}
 datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="blue")
+
 ```
 
 

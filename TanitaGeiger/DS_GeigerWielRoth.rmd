@@ -1,30 +1,45 @@
 ---
-title: "DS_GeigerWielRoth.rmd"
-author: "AndreaWiel"
-date: "3 Dezember 2019"
-output: html_document
+title: "DS_GeigerWielRoth"
+output: md_document
 ---
 
+
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+datensatz <- readRDS("robo_pflege.rds")
+datensatz_kurz <- datensatz[,c("age", "gender", "kut", "human_toilett", "robo_toilett")]
+```
+# Dies sind die deskriptiven Statistiken für den Datensatz.
+Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter als von einem Menschen beim Toilettengang helfen lassen würden.
+
+```{r warning=FALSE}
+datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Histogramme
 
-```{r cars}
-summary(cars)
+```{r warning=FALSE}
+datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="red")
+
+datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="blue")
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+### mit Pipe
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+datensatz_kurz %>% psych::describe() %>% select()
+
+
+
+### ohne Pipe
+
+psych::describe(select(datensatz)human_toilett)
+
+
+
