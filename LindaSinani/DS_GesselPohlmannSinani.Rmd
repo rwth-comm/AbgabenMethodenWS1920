@@ -24,6 +24,8 @@ psych::describe(select(data, age, gender, robo_hair_cut, human_hair_cut))
 data %>% select(robo_hair_cut) %>% ggplot() + aes(x = robo_hair_cut) + geom_histogram(bins = 15, fill="yellow")
 
 data %>% select(human_hair_cut) %>% ggplot() + aes(x = human_hair_cut) + geom_histogram(bins = 15, fill="green")
+
+
 ```
 
 
