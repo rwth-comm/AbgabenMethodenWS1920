@@ -9,6 +9,7 @@ output: md_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 
+
 library(tidyverse)
 library(ggplot2)
 datensatz <- readRDS("robo_pflege.rds")
