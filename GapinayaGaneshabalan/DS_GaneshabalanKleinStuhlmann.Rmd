@@ -20,6 +20,8 @@ datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::descri
 
 #umschreiben ohne pipe
 #psych::describe(select(datensatz, age, gender, robo_toilett, human_toilett))
+# Fast richtig, Sie haben sich an ein extra schweres Beispiel getraut. In Zeile 19 pipen Sie aber nochmal. 
+# Korrektur: select(psych::describe(select(datensatz, age, gender, robo_toilett, human_toilett)),vars, mean, sd, median, min, max) 
 
 datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="purple")
 
