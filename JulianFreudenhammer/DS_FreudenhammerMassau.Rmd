@@ -2,7 +2,7 @@
 title: "Untitled"
 author: "Freudenhammer + Massau"
 date: "05 12 2019"
-output: md_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -18,13 +18,13 @@ datensatz_kurz <- datensatz %>% select(robo_hair_cut, human_hair_cut)
 ```
 
 # Describe Datensatz
-```{r}
+```{r warning=FALSE}
 datensatz_kurz %>% psych::describe() %>%  select(vars, mean, sd, median, min, max)
 ```
 Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen, als von einem Roboter die Haare schneiden lassen würden.
 
 # Histogramme plotten
-```{r}
+```{r warning=FALSE}
 datensatz_kurz %>% ggplot() + aes(x = human_hair_cut) + geom_histogram(bins = 30, fill = "red")
 datensatz_kurz %>% ggplot() + aes(x = robo_hair_cut) + geom_histogram(bins = 30, fill = "blue")
 ```
