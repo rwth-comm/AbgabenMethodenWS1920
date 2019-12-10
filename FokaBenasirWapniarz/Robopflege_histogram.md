@@ -17,10 +17,9 @@ ersichtlich.
     ## robo_body     4  3.45  1.50    3.0   1   6
     ## human_body    5  3.81  1.35    4.0   1   6
 
-### ohne Pipe
+### Ohne Pipe
 
-\#\#\#select(psych::describe(dataset.short), vars, mean, sd, median,
-min,max)
+### dataset.short psych::describe() select(vars, mean, sd, median, min, max)
 
 #### **Histogramme.**
 

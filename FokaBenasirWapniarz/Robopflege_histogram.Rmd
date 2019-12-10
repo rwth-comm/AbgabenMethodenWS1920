@@ -23,8 +23,8 @@ Man sieht deskriptiv, dass sich die Probanden ihren Körper insgesamt sowohl von
 
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
-### ohne Pipe
-###select(psych::describe(dataset.short), vars, mean, sd, median, min,max)
+### Ohne Pipe
+### dataset.short psych::describe() select(vars, mean, sd, median, min, max)
 
 #### **Histogramme.**
 ```{r warning=FALSE}
