@@ -25,7 +25,9 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
 
 ### Ohne Pipe
+```{r warning=FALSE}
 #### select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
+```
 
 #### **Histogramme.**
 ```{r warning=FALSE}

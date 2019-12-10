@@ -19,14 +19,14 @@ ersichtlich.
 
 ### Ohne Pipe
 
-#### select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
+    #### select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
 
 #### **Histogramme.**
 
     datensatz %>% ggplot() + aes(x = robo_body) + geom_histogram(bins = 30, fill="red")
 
-![](Robopflege_histogram_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](Robopflege_histogram_files/figure-markdown_strict/unnamed-chunk-3-1.png)
 
     datensatz %>% ggplot() + aes(x = human_body) + geom_histogram(bins = 30, fill="blue")
 
-![](Robopflege_histogram_files/figure-markdown_strict/unnamed-chunk-2-2.png)
+![](Robopflege_histogram_files/figure-markdown_strict/unnamed-chunk-3-2.png)
