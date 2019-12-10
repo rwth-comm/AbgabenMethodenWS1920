@@ -1,0 +1,32 @@
+---
+title: "DS_LaubachHalle.rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+datensatz <- readRDS("C:/Users/Vanessa/Documents/R/Projekte/DS_LaubachHalle/robo_pflege.rds")
+library(tidyverse)
+```
+
+
+
+
+```{r}
+### Lassen sich Menschen lieber von einem Roboter oder von einem Menschen die Haare waschen? 
+## Es wird sichtbar, dass sich die Probanden die Haare lieber von einem Menschen waschen lassen.
+
+datensatz %>% select(human_hair_wash, robo_hair_wash) %>% psych::describe()
+
+## Histogramme
+datensatz %>% select(robo_hair_wash) %>% ggplot() + aes (x = robo_hair_wash) + geom_histogram()
+
+datensatz %>% select(human_hair_wash) %>% ggplot() + aes (x = human_hair_wash) + geom_histogram()
+```
+
+```{r}
+# Ohne Pipe
+
+# psych::describe(select(datensatz,robo_hair_wash, human_hair_wash))
+```
+
