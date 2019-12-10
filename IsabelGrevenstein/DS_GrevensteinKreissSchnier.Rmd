@@ -1,0 +1,41 @@
+---
+title: "DS_GrevensteinKreissSchnier"
+author: "Isabel Grevenstein, Caroline Kreiss, Jennifer Schnier"
+date: "12/4/2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+## DS_GrevensteinKreissSchnier
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+data <- read_rds("data/robo_pflege.rds")
+
+#data[c(6, 17)]
+
+```
+
+
+```{r}
+
+#data %>% names()
+
+names(data)
+
+data %>% select(robo_food, human_food) %>% psych::describe()
+
+data %>%  select(robo_food) %>% ggplot() + aes(x = robo_food) + geom_histogram(bins = 30)
+
+data %>%  select(human_food) %>% ggplot() + aes(x = human_food) + geom_histogram(bins = 30)
+
+#Die Befragten stimmen eher zu, sich von einem Menschen füttern zu lassen, als von einem Roboter.
+
+```
+
+```
+
+
