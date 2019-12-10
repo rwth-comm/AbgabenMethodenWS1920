@@ -6,6 +6,8 @@ sowohl von einem Menschen als auch von einem Roboter pflegen lassen
 würden. Jedoch ist eine leichte Tendenz zur menschlichen Pflege
 ersichtlich.
 
+### Mit Pipe
+
     dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 
     ##            vars  mean    sd median min max
@@ -14,6 +16,11 @@ ersichtlich.
     ## kut           3  4.32  1.03    4.5   1   6
     ## robo_body     4  3.45  1.50    3.0   1   6
     ## human_body    5  3.81  1.35    4.0   1   6
+
+### ohne Pipe
+
+\#\#\#select(psych::describe(dataset.short), vars, mean, sd, median,
+min,max)
 
 #### **Histogramme.**
 
