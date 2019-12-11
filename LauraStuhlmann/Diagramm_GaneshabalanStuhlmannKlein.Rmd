@@ -1,0 +1,59 @@
+---
+title: "Diagramm_GaneshabalanStuhlmannKlein"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+
+
+
+
+datensatz <- readRDS("robo_pflege.rds")
+
+
+ggplot(datensatz) +
+ aes(x = gender, weight = kut) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ", 
+      y = " ", 
+      title = " ", 
+      subtitle = " ", 
+      caption = " ") +
+ theme_fivethirtyeight()
+
+
+
+
+
+# Balkendiagramm (Jobtyp und robo_toilett)
+
+
+ggplot(datensatz) +
+ aes(x = job_type, weight = robo_toilett) +
+ summarise(robo_toilett_m = mean(robo_toilett)-1, robo_toilett_sem = std.error(robo_toilett), Varianz = var(robo_toilett), SD = sd(robo_toilett)) %>% 
+ggplot() +
+  aes(x = job_type, weight = job_type_m, ymin = robo_toilett_m-robo_toilett_sem , ymax = robo_toilett_m+robo_toilett_sem, fill = job_type) +
+ geom_bar(fill = "#fba29d") +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Jobtyp",
+      y = "Anzahl der Zustimmungen",
+      title = "Studierende haben eine höhere Akzeptanz gegenüber Roboter beim Toilettengang", 
+      subtitle = "Balkendiagramm zu den Jobtypen") +
+ theme_fivethirtyeight()
+
+
+
+ggsave("GapinayaGaneshabalan/Diagramm_GaneshabalanStuhlmamnnKlein.pdf", width = 210, height = 297, units = "mm")
+ 
+ 
+
+```
+
