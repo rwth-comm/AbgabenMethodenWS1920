@@ -1,0 +1,40 @@
+---
+title: "Deskriptive Statistik"
+author: "Abel and Gerhardt and Köster"
+date: "04 12 2019"
+output:
+  github_document: default
+  md_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+dataset <- readRDS("robo_pflege.rds")
+dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
+```
+
+# Dies sind die desktiptiven Statistiken für den Datensatz.
+Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen, als von einem Roboter füttern lassen würden. 
+```{r warning=FALSE}
+dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
+```
+# Histogramme.
+
+```{r warning=FALSE}
+dataset %>% ggplot() +  aes(x = robo_food) + geom_histogram(bins = 30, fill="red")
+dataset %>% ggplot() +  aes(x = human_food) + geom_histogram(bins = 30, fill="blue")
+```
+# ohne Pipe
+```{r}
+# psych::describe(dataset(select(robo_food)))
+# Korrektur: dataset ist keine Funktion und describe() funktioniert nur mit mindestens zwei Spalten.
+# Lösung: psych::describe(select(dataset, robo_food, human_food))
+```
+# mit Pipe
+```{r}
+# dataset %>% select(robo_food)
+# Korrektur: Das ist nicht gleich zu der Zeile oben, da das describe() fehlt.
+# Lösung: dataset %>% select(robo_food, human_food) %>% psych::describe()
+```

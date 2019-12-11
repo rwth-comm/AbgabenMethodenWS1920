@@ -1,0 +1,13 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Die Grundlagen von R erlernen
+* Neue empirische Forschungsmethoden entdecken
+* Spaß an den Aufgaben und der Gruppenarbeit

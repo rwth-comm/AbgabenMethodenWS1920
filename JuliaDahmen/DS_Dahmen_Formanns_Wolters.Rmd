@@ -1,0 +1,36 @@
+---
+title: "Hausaufgabe - Deskriptive Statistik"
+author: "JD and SF and FW"
+date: "05 12 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+dataset <- readRDS("robo_pflege.rds")
+dataset.short <- dataset[,c("age", "gender", "kut", "robo_hair_cut", "human_hair_cut")]
+```
+
+# Dies sind die desktiptiven Statistiken für den Datensatz.
+
+Man sieht deskriptiv, dass sich die Probanden eher von einem Menschen, als von einem Roboter die Haare schneiden lassen würden. 
+```{r warning=FALSE}
+dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
+```
+
+# Histogramme.
+```{r}
+ggplot(dataset) +
+ aes(x = gender, weight = robo_hair_cut) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = "Geschlechter", y = "Bereitschaft zum Roboterhaarschnitt", title = "Frauen lassen sich eher von einem Roboter die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Roboterhaarschnitt") +
+ theme_minimal()
+
+ggplot(dataset) +
+ aes(x = gender, weight = human_hair_cut) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = "Geschlechter", y = "Bereitschaft zum Menschenhaarschnitt", title = "Frauen lassen sich eher von einem Menschen die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Menschenhaarschnitt") +
+ theme_minimal()
+``` 

@@ -1,0 +1,15 @@
+---
+title: "Erste Hausaufgabe"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Meine Erwartungen
+* Verständnis für die Programme entwickeln
+* Lernen die Programme richtig anzuwenden
+* Umgang mit wissenschaftlichen Forschungsmethoden
+* Empirische Methoden aus der Vorlesung vertiefen
+* Datensätze auswerten 

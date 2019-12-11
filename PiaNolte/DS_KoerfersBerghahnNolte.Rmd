@@ -1,0 +1,41 @@
+---
+title: "DS_KoerfersBerghahnNolte.rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Dies sind die deskriptiven Statistiken für den Datensatz.
+### Man sieht deskriptiv, dass sich die Probanden eher von einem Menschen die Haare schneiden lassen würden, als von einem Roboter.
+```{r}
+datensatz <- readRDS("~/test/robo_pflege.rds")
+
+dataset_short <- datensatz %>% select(robo_hair_cut, human_hair_cut) 
+dataset_short %>% psych::describe() %>%  select(vars, mean, sd, median, min, max)
+
+
+
+```
+## Histogramme.
+```{r}
+datensatz %>% select(robo_hair_cut) %>% ggplot() + aes(x = robo_hair_cut) + geom_bar()
+
+datensatz %>% select(human_hair_cut) %>%ggplot() + aes(x = human_hair_cut) + geom_bar()
+```
+
+
+# ohne Pipe
+```{r}
+# psych::describe(datensatz(select(robo_hair_cut)))
+# Bei datensatz() ist ein Fehler, da es keine Funktion ist, sondern ihre Tabelle.
+# Korrektur: psych::describe(select(datensatz, robo_hair_cut, human_hair_cut))
+```
+# mit Pipe
+```{r}
+# datensatz %>% select(robo_hair_cut)
+# Korrektur: 
+# datensatz %>% select(robo_hair_cut, human_hair_cut) %>% psych::describe()
+```
