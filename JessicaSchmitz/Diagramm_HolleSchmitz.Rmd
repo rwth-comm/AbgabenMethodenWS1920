@@ -1,0 +1,19 @@
+---
+title: "Diagramm_HolleSchmitz"
+author: "MH und JS"
+date: "10 12 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(devtools)
+library(plotrix)
+dataset <- readRDS("JessicaSchmitz/robo_pflege.rds")
+dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
+```
+
