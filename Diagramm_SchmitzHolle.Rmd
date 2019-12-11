@@ -34,7 +34,7 @@ ggplot() +
   scale_y_continuous(limits = c(0,5)) +
  labs(x = "Geschlecht",
       y = "Technikverständnis [0-5]",
-      title = "Männer haben ein höheres Technikverständnis",
+      title = "Männer haben ein höheres Technikverständnis.",
       subtitle = "Geschlechtsunterschiede im Säulendiagramm",
       caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
  theme_fivethirtyeight() +
