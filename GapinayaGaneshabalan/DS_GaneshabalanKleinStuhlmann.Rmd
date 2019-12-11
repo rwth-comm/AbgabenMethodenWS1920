@@ -1,6 +1,6 @@
 ---
 title: "DS_GaneshabalanKleinStuhlmann"
-output: md_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 datensatz <- readRDS("robo_pflege.rds")
 
 library(tidyverse)
+library(esquisse)
+library(ggplot2)
+
 
 ```
 
@@ -24,5 +27,16 @@ datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::descri
 datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="purple")
 
 datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="yellow")
+
+
+
+
+
+
+
+
+
+
+
 ```
 
