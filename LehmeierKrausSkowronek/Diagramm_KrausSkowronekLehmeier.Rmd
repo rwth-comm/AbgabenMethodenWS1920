@@ -17,7 +17,10 @@ datensatz <- readRDS("~/AbgabenMethodenWS1920/LehmeierKrausSkowronek/robo_pflege
 devtools::install_github("HCIC/r-tools")
 
 rwthfarben <- hcictools::rwth.colorpalette()
+```
 
+
+```{r}
 ggplot(datensatz) +
  aes(x = gender, weight = robo_hair_wash) +
  geom_bar(fill = "#0c4c8a") +
@@ -45,6 +48,7 @@ ggplot() +
  theme_linedraw() +
  NULL
 ```
+
 
 
 
