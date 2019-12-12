@@ -1,0 +1,54 @@
+---
+title: "Diagramme_HildebrandtCalero"
+author: "JRH and ACV"
+date: "6 12 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+datensatz <- readRDS("robo_pflege.rds")
+rwthfarben <- hcictools::rwth.colorpalette()
+
+```
+
+```{r}
+ggplot(datensatz) +
+ aes(x = gender, weight = kut) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ", 
+      y = " ", 
+      title = " ", 
+      subtitle = " ", 
+      caption = " ") +
+ theme_linedraw()
+```
+
+# Nach Anpassungen:
+
+
+```{r}
+datensatz %>% 
+  filter(gender != "keine Angabe") %>% 
+  group_by(gender) %>% 
+  summarise(kut_m = mean(kut)-1, kut_sem = std.error(kut)) %>% 
+ggplot() +
+  aes(x = gender, weight = kut_m, ymin = kut_m-kut_sem , ymax = kut_m+kut_sem, fill = gender) +
+  geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+  labs(x = "Geschlecht", 
+       y = "KUT [0-5]", 
+       title = "Männer trauen sich bei Technik mehr zu", 
+       subtitle = "Geschlechtsunterschiede im Säulendiagramm", 
+       caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
+  theme_linedraw() +
+  NULL
+```
+

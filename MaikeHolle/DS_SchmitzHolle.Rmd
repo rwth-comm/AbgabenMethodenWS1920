@@ -11,6 +11,7 @@ Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen als von ei
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 library(tidyverse)
 library(ggplot2)
+library(esquisse)
 dataset <- readRDS("robo_pflege.rds")
 dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
 ```
@@ -19,6 +20,8 @@ dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
 
 # vars, mean, sd, median, min, max(psych::describe(dataset.short))
+# Fast...
+# Korrektur: select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
 ```
 
 # Histogramme

@@ -11,6 +11,7 @@ library(tidyverse)
 library(ggplot2)
 dataset <- readRDS("robo_pflege.rds")
 dataset.short <- dataset[,c("age", "gender", "kut", "robo_bed", "human_bed")]
+
 ```
 # Dies sind die desktiptiven Statistiken für den Datensatz.
 Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter, als von einem Menschen ins Bett legen lassen würden. 
@@ -19,7 +20,7 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
 # Histogramme.
 
-```{r warning=FALSE}
+```{r warning=FALSE, include=F}
 dataset %>% ggplot() +  aes(x = robo_bed) + geom_histogram(bins = 30, fill="red")
 
 dataset %>% ggplot() +  aes(x = human_bed) + geom_histogram(bins = 30, fill="blue")
