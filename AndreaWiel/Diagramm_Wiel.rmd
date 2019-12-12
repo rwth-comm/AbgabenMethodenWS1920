@@ -1,0 +1,45 @@
+---
+author: "AndreaWiel"
+output: rmd_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+
+datensatz <- readRDS("C:/Users/Andrea Kristina/Desktop/RWTH/ws19/Basismodul Seminar Ordner fuer R/AbgabenMethodenWS1920/AndreaWiel/robo_pflege.rds")
+
+devtools::install_github("HCIC/r-tools")
+
+rwthfarben <- hcictools::rwth.colorpalette()
+```
+
+```{r}
+datensatz %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(human_toilett_m = mean(human_toilett, na.rm = TRUE)-1, human_toilett_sem = std.error(human_toilett))
+ggplot() +
+ aes(x = gender, weight = human_toilett, ymin = human_toilett_m-human_toilett_sem, ymax = human_toilett_m+human_toilett_sem, fill = gender) +
+ geom_bar(fill = c(rwthfarben$blue, rwthfarben$magenta), width = 0,4) +
+  geom_errorbar(width = 0,2) +
+  scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Geschlecht",
+      y = "human_toilett [0-5]",
+      title = "Frauen lassen sich eher von einem Menschen zur Toilette bringen",
+      subtitle = "Geschlechtsunterschiede in Säulendiagrammen",
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
+ theme_linedraw() +
+  NULL
+```
+
