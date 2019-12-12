@@ -20,10 +20,14 @@ data %>% select(age, gender, robo_hair_cut, human_hair_cut) %>% psych::describe(
 
 # Ohne Pipe 
 psych::describe(select(data, age, gender, robo_hair_cut, human_hair_cut))
+# Nicht ganz gleich, da mit Pipe nochmal selected wird.
+# Korrektur: select(psych::describe(select(data, age, gender, robo_hair_cut, human_hair_cut)), vars, mean, sd, median, min, max) 
 
 data %>% select(robo_hair_cut) %>% ggplot() + aes(x = robo_hair_cut) + geom_histogram(bins = 15, fill="yellow")
 
 data %>% select(human_hair_cut) %>% ggplot() + aes(x = human_hair_cut) + geom_histogram(bins = 15, fill="green")
+
+
 ```
 
 

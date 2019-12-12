@@ -1,10 +1,14 @@
-Dies sind die deskriptiven Statistiken für den Datensatz.
-=========================================================
+DS\_GeigerWielRoth
+================
+
+# Dies sind die deskriptiven Statistiken für den Datensatz.
 
 Man sieht deskriptiv, dass die Probanden sich eher von einem Roboter als
 von einem Menschen beim Toilettengang helfen lassen würden.
 
-    datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
+``` r
+datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
+```
 
     ##               vars  mean    sd median min max
     ## age              1 32.25 13.83   26.0  19  81
@@ -13,21 +17,36 @@ von einem Menschen beim Toilettengang helfen lassen würden.
     ## human_toilett    4  3.01  1.36    3.0   1   6
     ## robo_toilett     5  3.93  1.61    4.0   1   6
 
-Histogramme
-===========
+# Histogramme
 
-    datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="red")
+``` r
+datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="red")
+```
 
-![](DS_GeigerWielRoth_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](DS_GeigerWielRoth_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-    datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="blue")
+``` r
+datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="blue")
+```
 
-![](DS_GeigerWielRoth_files/figure-markdown_strict/unnamed-chunk-2-2.png)
+    ## Warning: Removed 32 rows containing non-finite values (stat_bin).
 
+![](DS_GeigerWielRoth_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+``` r
 ### mit Pipe
 
-datensatz\_kurz %&gt;% psych::describe() %&gt;% select()
+datensatz_kurz %>% psych::describe() %>% select()
+```
 
+    ## data frame with 0 columns and 5 rows
+
+``` r
 ### ohne Pipe
 
-psych::describe(select(datensatz)human\_toilett)
+# nicht korrekt: psych::describe(select(datensatz)human_toilett)
+# Korrektur: 
+select(psych::describe(datensatz_kurz))
+```
+
+    ## data frame with 0 columns and 5 rows
