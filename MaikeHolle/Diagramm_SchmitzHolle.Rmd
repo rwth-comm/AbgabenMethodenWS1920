@@ -38,5 +38,5 @@ ggplot() +
       subtitle = "Geschlechtsunterschiede im Säulendiagramm",
       caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
  theme_fivethirtyeight() +
- NULL
+ NULL 
 ```
