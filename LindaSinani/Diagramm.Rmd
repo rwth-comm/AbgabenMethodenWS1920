@@ -13,7 +13,7 @@ library(devtools)
 library(ggplot2)
 library(ggthemes)
 
-datensatz <- readRDS("LindaSinani/robo_pflege.rds")
+data <- readRDS("robo_pflege.rds")
 rwthfarben <- hcictools::rwth.colorpalette()
 ```
 
@@ -24,7 +24,7 @@ rwthfarben <- hcictools::rwth.colorpalette()
 datensatz %>% 
 filter(job_type != "keine Angabe") %>% 
 group_by(job_type) %>%   
-summarise(robo_hair_cut_m = mean(robo_hair_cut_m, na.rm = TRUE)-1, robo_hair_cut_sem = std.error(robo_hair_cut)) %>% 
+summarise(robo_hair_cut_m = mean(robo_hair_cut, na.rm = TRUE)-1, robo_hair_cut_sem = std.error(robo_hair_cut)) %>% 
   ggplot() +
   aes(x = job_type, weight = robo_hair_cut_m, ymin = robo_hair_cut_m-robo_hair_cut_sem , ymax = robo_hair_cut_m+robo_hair_cut_sem, fill = job_type) +
   
