@@ -16,7 +16,7 @@ library(gdtools)
 dataset <- readRDS("robo_pflege.rds")
 
 devtools::install_github("HCIC/r-tools")
-
+ 
 rwthfarben <- hcictools::rwth.colorpalette()
 
 ```
