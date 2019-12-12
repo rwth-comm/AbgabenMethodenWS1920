@@ -3,7 +3,7 @@
       group_by(gender) %>%
       summarise(Mean = mean(robo_food, na.rm = TRUE)-1, sem = std.error(robo_food)) %>% 
       ggplot() +
-      aes(x = gender, weight = Mean, ymin = Mean-sem , ymax = Mean+sem, fill = gender) +
+      aes(x = gender, weight = Mean, ymin = Mean - sem , ymax = Mean + sem, fill = gender) +
       geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
       geom_errorbar(width = 0.2) +
       scale_y_continuous(limits = c(0,5)) +
