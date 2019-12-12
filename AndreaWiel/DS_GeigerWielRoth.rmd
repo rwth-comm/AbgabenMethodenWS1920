@@ -1,6 +1,8 @@
 ---
 title: "DS_GeigerWielRoth"
-output: md_document
+output:
+  md_document: default
+  git_document: default
 ---
 
 
@@ -41,5 +43,13 @@ datensatz_kurz %>% psych::describe() %>% select()
 
 psych::describe(select(datensatz)human_toilett)
 
+```{r}
+Code:
+ggplot(robo_pflege) +
+ aes(x = gender, y = robo_toilett) +
+ geom_boxplot(fill = "#0c4c8a") +
+ labs(x = " ", y = " ", title = " ", subtitle = " ", caption = " ") +
+ theme_minimal()
+```
 
 
