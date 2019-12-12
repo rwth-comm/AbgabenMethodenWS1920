@@ -1,0 +1,46 @@
+---
+title: "Diagramm"
+author: "Linda Sinani, Xenia Gessel"
+date: "12 12 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(plotrix)
+library(devtools)
+library(ggplot2)
+library(ggthemes)
+
+data <- readRDS("robo_pflege.rds")
+rwthfarben <- hcictools::rwth.colorpalette()
+```
+
+```{r}
+devtools::install_github("HCIC/r-tools")
+rwthfarben <- hcictools::rwth.colorpalette()
+# Balkendiagramm (Jobtyp und robo_hair_cut)
+datensatz %>% 
+filter(job_type != "keine Angabe") %>% 
+group_by(job_type) %>%   
+summarise(robo_hair_cut_m = mean(robo_hair_cut, na.rm = TRUE)-1, robo_hair_cut_sem = std.error(robo_hair_cut)) %>% 
+  ggplot() +
+  aes(x = job_type, weight = robo_hair_cut_m, ymin = robo_hair_cut_m-robo_hair_cut_sem , ymax = robo_hair_cut_m+robo_hair_cut_sem, fill = job_type) +
+  
+  geom_bar(fill = c(rwthfarben$bordeaux, rwthfarben$yellow, rwthfarben$magenta, rwthfarben$blue, rwthfarben$pet)) +
+  
+  geom_errorbar(width = 0.5) +
+  
+  scale_y_continuous(limits = c(0,5)) +
+ 
+  
+  labs(x = "Jobtyp",
+      y = "Anzahl der Zustimmungen",
+      title = "Jobtyp nimmt keinen Einfluss auf die Akzeptanz", 
+      subtitle = "Balkendiagramm zu den Jobtypen",
+      caption = "Fehlerindikatoren zeigen Standardfehler für den Mittelwert an") +
+ theme_fivethirtyeight()
+NULL
+ggsave("Diagramm_SinaniGessel.pdf", width = 210, height = 297, units = "mm")
+```
