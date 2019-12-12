@@ -12,7 +12,7 @@
           title = "Frauen würden sich von einem Roboter eher füttern lassen.",
           subtitle = "Geschlechtsunterschiede im Säulendiagramm",
           caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
-     theme_fivethirtyeight() +
+     theme_linedraw() +
       NULL
 
 ![](Diagramm_SchmitzHolle_files/figure-markdown_strict/unnamed-chunk-1-1.png)
