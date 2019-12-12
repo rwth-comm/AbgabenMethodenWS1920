@@ -12,10 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
-devtools::install_github("HCIC/r-tools")
-
-rwthfarben <- hcictools::rwth.colorpalette()
-
 datensatz %>%
   filter(gender != "keine Angabe") %>%
   group_by(gender) %>%
