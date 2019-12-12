@@ -33,10 +33,20 @@ datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom
 
 ![](DS_GeigerWielRoth_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
+``` r
 ### mit Pipe
 
-datensatz\_kurz %\>% psych::describe() %\>% select()
+datensatz_kurz %>% psych::describe() %>% select()
+```
 
+    ## data frame with 0 columns and 5 rows
+
+``` r
 ### ohne Pipe
 
-psych::describe(select(datensatz)human\_toilett)
+# nicht korrekt: psych::describe(select(datensatz)human_toilett)
+# Korrektur: 
+select(psych::describe(datensatz_kurz))
+```
+
+    ## data frame with 0 columns and 5 rows
