@@ -33,7 +33,7 @@ ggplot() +
   labs(x = "Geschlecht", 
        y = "Zustimmung zum Waschen durch einen Roboter", 
        title = "Männer würden sich eher von einem Roboter waschen lassen als Frauen", 
-       subtitle = "Geschlechtsunterschiede im Säulendiagramm (n=322).", 
+       subtitle = "Geschlechtsunterschiede im Säulendiagramm.", 
        caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
   theme_solarized_2() +
   NULL
