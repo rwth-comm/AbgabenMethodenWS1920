@@ -1,6 +1,6 @@
 ---
 title: "DS_GeigerWielRoth"
-output: md_document
+output: github_document
 ---
 
 
@@ -35,15 +35,16 @@ datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom
 
 
 
+```{r warning=FALSE}
 ### mit Pipe
 
 datensatz_kurz %>% psych::describe() %>% select()
 
 
-
 ### ohne Pipe
 
-psych::describe(select(datensatz)human_toilett)
-
-
+# nicht korrekt: psych::describe(select(datensatz)human_toilett)
+# Korrektur: 
+select(psych::describe(datensatz_kurz))
+```
 

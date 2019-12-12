@@ -1,0 +1,40 @@
+---
+title: "Diagramm_HolleSchmitz"
+author: "MH und JS"
+date: "10/12/2019"
+output: md_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(devtools)
+library(plotrix)
+library(ggthemes)
+
+dataset <- readRDS("robo_pflege.rds")
+
+devtools::install_github("HCIC/r-tools")
+
+rwthfarben <- hcictools::rwth.colorpalette()
+```
+
+``` {r}
+dataset %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(Mean = mean(robo_food, na.rm = TRUE)-1, sem = std.error(robo_food)) %>% 
+  ggplot() +
+  aes(x = gender, weight = Mean, ymin = Mean - sem , ymax = Mean + sem, fill = gender) +
+  geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+  labs(x = "Geschlecht",
+      y = "Bereitschaft, sich von einem Roboter füttern zu lassen",
+      title = "Männer würden sich eher von einem Roboter füttern lassen.",
+      subtitle = "Geschlechtsunterschiede im Säulendiagramm",
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
+ theme_linedraw() +
+  NULL
+```

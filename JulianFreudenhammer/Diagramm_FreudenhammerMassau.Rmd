@@ -1,0 +1,58 @@
+---
+title: "Diagramm_FreudenhammerMassau"
+author: "FreudenhammerMassau"
+date: "10 12 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+datensatz <- readRDS("robo_pflege.rds")
+#devtools::install_github("HCIC/r-tools")
+#rwthfarben <- hcictools::rwth.colorpalette()
+
+```
+
+```{r}
+ggplot(datensatz) +
+ aes(x = gender, weight = robo_toilett) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ", y = " ", title = " ", subtitle = " ", caption = " ") +
+ theme_minimal()
+```
+
+## ToDo:
+1. richtige Werte
+2. korrekte Beschriftungen
+3. Fehlerbalken
+4. Optik
+5. Y-Achse 
+6. Speichern
+
+```{r}
+datensatz %>%
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(robo_toilett_m = mean(robo_toilett, na.rm = TRUE), robo_toilett_sem = std.error(robo_toilett)) %>%
+  
+ggplot() +
+ aes(x = gender, weight = robo_toilett_m , ymin = robo_toilett_m-robo_toilett_sem , ymax = robo_toilett_m+robo_toilett_sem , fill = gender) +
+  
+ geom_bar() +
+  geom_errorbar() +
+ labs(x = "Geschlecht", 
+      y = "Zustimmung_Robo_Toilett [1-6]", 
+      title = "Unterstützung Toilette Mann oder Frau?", 
+      subtitle = "Geschlechtsunterschiede im Säulendiagramm", 
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
+ theme_minimal()
+```
