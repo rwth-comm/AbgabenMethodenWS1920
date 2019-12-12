@@ -1,22 +1,22 @@
 ---
 title: "DeskriptiveStatistik-LehmeierKrausSkowronek"
-output: html_document
+output: md_document
 ---
 Man sieht deskriptiv, dass die Probanden sich eher von einem Menschen, als von einem Roboter die Haare waschen lassen würden.
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 library(tidyverse)
 library(ggplot2)
 library(psych)
 
-datensatz <- readRDS("robo_pflege.rds")
-```
-
-```{r}
+datensatz <- readRDS("../robo_pflege.rds")
 datensatz %>% names()
 
 names(datensatz)
+```
+
+```{r echo=FALSE, warning=FALSE}
 
 datensatz  %>% select("age", "human_hair_wash", "robo_hair_wash") %>% psych::describe()
 

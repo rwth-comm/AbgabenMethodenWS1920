@@ -15,11 +15,3 @@ als von einem Menschen ins Bett legen lassen würden.
 
 Histogramme.
 ============
-
-    dataset %>% ggplot() +  aes(x = robo_bed) + geom_histogram(bins = 30, fill="red")
-
-![](DS_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-2-1.png)
-
-    dataset %>% ggplot() +  aes(x = human_bed) + geom_histogram(bins = 30, fill="blue")
-
-![](DS_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-2-2.png)
