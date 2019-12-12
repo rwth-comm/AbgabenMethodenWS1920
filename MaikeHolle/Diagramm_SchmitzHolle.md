@@ -9,7 +9,7 @@
       scale_y_continuous(limits = c(0,5)) +
       labs(x = "Geschlecht",
           y = "Bereitschaft, sich von einem Roboter füttern zu lassen",
-          title = "Frauen würden sich von einem Roboter eher füttern lassen.",
+          title = "Männer würden sich eher von einem Roboter füttern lassen.",
           subtitle = "Geschlechtsunterschiede im Säulendiagramm",
           caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
      theme_linedraw() +
