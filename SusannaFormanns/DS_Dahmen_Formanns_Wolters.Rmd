@@ -16,17 +16,8 @@ dataset.short <- dataset[,c("age", "gender", "kut", "robo_hair_cut", "human_hair
 # Dies sind die desktiptiven Statistiken für den Datensatz.
 
 Man sieht deskriptiv, dass sich die Probanden eher von einem Menschen, als von einem Roboter die Haare schneiden lassen würden. 
-
-### mit Pipe
-
 ```{r warning=FALSE}
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
-```
-
-### ohne Pipe
-
-```{r warning=FALSE}
-#### select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
 ```
 
 # Histogramme.

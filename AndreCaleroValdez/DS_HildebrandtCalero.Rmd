@@ -26,4 +26,3 @@ dataset %>% ggplot() +  aes(x = human_bed) + geom_histogram(bins = 30, fill="blu
 ```
 
 
-

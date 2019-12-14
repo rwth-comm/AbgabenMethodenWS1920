@@ -17,18 +17,10 @@ dataset.short <- datensatz[,c("age","gender", "kut", "robo_body","human_body")]
 ```
 # Dies sind die deskriptiven Statistiken für den Datensatz.
 Man sieht deskriptiv, dass sich die Probanden ihren Körper insgesamt sowohl von einem Menschen als auch von einem Roboter pflegen lassen würden. Jedoch ist eine leichte Tendenz zur menschlichen Pflege ersichtlich.
-
-### Mit Pipe
 ```{r warning=FALSE}
 
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 ```
-
-### Ohne Pipe
-```{r warning=FALSE}
-#### select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
-```
-
 #### **Histogramme.**
 ```{r warning=FALSE}
 datensatz %>% ggplot() + aes(x = robo_body) + geom_histogram(bins = 30, fill="red")

@@ -23,11 +23,6 @@ dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
 
 ##ohne Pipe
 #psych::describe(select(dataset, age, gender, robo_wash, human_wash))
-
-# Die Zeilen sind nicht gleich. Oben in Z22 selectest du Spalten aus dem describe(),
-# unten selectest du Zeilen aus dataset und beschreibst diese alle. 
-# Das macht das selbe wie Z22: select(psych::describe(dataset.short), vars, mean, sd, median, min, max) 
-
 ```
 # Histogramme.
 

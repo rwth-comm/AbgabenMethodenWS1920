@@ -19,8 +19,6 @@ dataset.short <- dataset[,c("age", "gender", "kut", "robo_food", "human_food")]
 dataset.short %>% psych::describe() %>% select(vars, mean, sd, median, min, max) 
 
 # vars, mean, sd, median, min, max(psych::describe(dataset.short))
-# Fast...
-# Korrektur: select(psych::describe(dataset.short), vars, mean, sd, median, min, max)
 ```
 
 # Histogramme

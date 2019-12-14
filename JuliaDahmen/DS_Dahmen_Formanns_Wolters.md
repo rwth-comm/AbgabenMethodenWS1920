@@ -16,18 +16,10 @@ als von einem Roboter die Haare schneiden lassen würden.
 Histogramme.
 ============
 
-    ggplot(dataset) +
-     aes(x = gender, weight = robo_hair_cut) +
-     geom_bar(fill = "#0c4c8a") +
-     labs(x = "Geschlechter", y = "Bereitschaft zum Roboterhaarschnitt", title = "Frauen lassen sich eher von einem Roboter die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Roboterhaarschnitt") +
-     theme_minimal()
+    dataset %>% ggplot() +  aes(x = robo_hair_cut) + geom_histogram(bins = 30, fill="red")
 
 ![](DS_Dahmen_Formanns_Wolters_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-    ggplot(dataset) +
-     aes(x = gender, weight = human_hair_cut) +
-     geom_bar(fill = "#0c4c8a") +
-     labs(x = "Geschlechter", y = "Bereitschaft zum Menschenhaarschnitt", title = "Frauen lassen sich eher von einem Menschen die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Menschenhaarschnitt") +
-     theme_minimal()
+    dataset %>% ggplot() +  aes(x = human_hair_cut) + geom_histogram(bins = 30, fill="blue")
 
 ![](DS_Dahmen_Formanns_Wolters_files/figure-markdown_strict/unnamed-chunk-2-2.png)
