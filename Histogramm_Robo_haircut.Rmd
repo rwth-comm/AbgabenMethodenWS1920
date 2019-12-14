@@ -1,0 +1,11 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+ggplot(robo_pflege) +
+ aes(x = robo_hair_cut) +
+ geom_histogram(bins = 30L, fill = "#0c4c8a") +
+ labs(x = "Bereitschaft: Haarschnitt durch Roboter", y = "Häufigkeit", title = "Haarschnitt durch Roboter", subtitle = "Histogramm zur Bereitschaft sich von einem Roboter die Haare schneiden zu lassen", caption = " ") +
+ theme_minimal()
+ 
