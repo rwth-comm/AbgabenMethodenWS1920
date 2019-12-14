@@ -28,10 +28,10 @@ ggplot(dataset) +
  labs(x = "Geschlechter", y = "Bereitschaft zum Roboterhaarschnitt", title = "Frauen lassen sich eher von einem Roboter die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Roboterhaarschnitt") +
  theme_minimal()
  
-
 ggplot(dataset) +
  aes(x = gender, weight = human_hair_cut) +
  geom_bar(fill = "#0c4c8a") +
  labs(x = "Geschlechter", y = "Bereitschaft zum Menschenhaarschnitt", title = "Frauen lassen sich eher von einem Menschen die Haare schneiden als Männer", subtitle = "Histogramm der geschlechterspezifischen Bereitschaft zum Menschenhaarschnitt") +
  theme_minimal()
 ``` 
+
