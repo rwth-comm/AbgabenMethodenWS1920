@@ -70,12 +70,13 @@ ANOVA(dep = "robo_toilett", factors = c("gender"),
 
 datensatz %>%
   group_by(gender) %>%
-  summarise(robo_toilett_mean = mean(robo_toilett), 
+  summarise(robo_toilett_mean = mean(robo_toilett),
+            na.rm = TRUE, 
             count = n(),
             robo_toilett_se = std.error(robo_toilett)) %>%
   mutate(robo_toilett_ci = robo_toilett_se *1.96) %>%
   ggplot() + 
-  aes(x = gender, y = robo_toilett_mean, 
+  aes(x = gender, y = robo_toilett_mean,
       ymin = robo_toilett_mean - robo_toilett_ci,
       ymax = robo_toilett_mean + robo_toilett_ci,
       group = 1) +
