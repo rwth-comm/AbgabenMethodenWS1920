@@ -1,0 +1,88 @@
+---
+title: "Hausaufgabe für Freitag den 20."
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+# Das Geschlecht hat einen Einfluss auf die Bereitschaft, sich von einem Roboter oder einem Menschen zur Toilette bringen zu lassen.
+
+```{r}
+library(jmv)
+library(plotrix)
+library(knitr)
+
+datensatz_kurz <- datensatz[,c("gender", "human_toilett", "robo_toilett")]
+```
+
+```{r}
+datensatz_kurz %>% psych::describe() %>% select(vars, mean, sd, median, min, max)
+
+```
+
+# Varianzanalysen
+
+```{r ANOVA}
+
+datensatz %>%
+  ANOVA(dep = "robo_toilett", factors = c("gender"),
+        effectSize = "partEta",
+        postHoc = robo_toilett ~ gender,
+        emMeans = ~ gender,
+        emmPlots = TRUE)
+
+
+datensatz %>%
+  group_by(gender) %>% 
+  summarise(robo_toilett_mean  = mean(robo_toilett, na.rm = TRUE) - 1, 
+            count = n(),
+            robo_toilett_se = std.error(robo_toilett)) %>% 
+  filter(gender != "keine Angabe") %>%
+  mutate(robo_toilett_ci = robo_toilett_se * 1.96) %>% 
+  ggplot() +
+  aes(x = gender, fill = gender,
+      y = robo_toilett_mean,
+      ymin = robo_toilett_mean - robo_toilett_ci, 
+      ymax = robo_toilett_mean + robo_toilett_ci,
+      group = 1) +
+  geom_col(width = 0.4) +
+  geom_line() +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+  labs(title = "Männer sind eher bereit, sich von einem Roboter zur Toilette bringen zu lassen.",
+       subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+       x = "Geschlecht",
+       y = " Bereitschaft, sich von einem Roboter zur Toilette bringen zu lassen [0-5]",
+       fill = "Geschlecht")
+
+```
+Es gibt Unterschiede zwischen den Geschlechtern im Hinblick auf die Bereitschaft, sich von einem Roboter auf die Toilette bringen zu lassen (F(2, 290)=7.10***, p < .001). Dabei unterscheiden sich aber nur Männer und Frauen in der Bereitschaft, sich von einem Roboter auf die Toilette bringen zu lassen (Unterschied M = 0,681, t(290) = 3.642, p-tukey < .001).
+
+
+```{r}
+datensatz %>% 
+  filter(gender != "rather not say") %>% 
+  mutate(gender = fct_recode(gender, "male" = "rather not say")) %>% 
+  filter(job_type %in% c("student", "employee")) %>% 
+  mutate(job_type = fct_recode(job_type, "student" = "unemployed",
+                               "student" = "self-employed",
+                               "student" = "pensioner")) %>% 
+  ancova(dep = "cse", factors = c("gender", "job_type"),
+         covs = c("age"), 
+        effectSize = "partEta",
+        postHoc = cse ~ gender + job_type + gender:job_type,
+        emMeans = ~ gender + job_type + gender:job_type,
+        emmPlots = TRUE)
+```
+
