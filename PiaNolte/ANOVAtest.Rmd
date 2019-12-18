@@ -1,0 +1,52 @@
+---
+title: "ANOVAtest"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dataforsocialscience)
+library(jmv)
+library(knitr)
+library(plotrix)
+```
+
+```{r ANOVA}
+ANOVA(data = robo_care)
+
+robo_care
+
+robo_care %>% 
+  ANOVA(dep = "cse", factors = c("gender"),
+        effectSize = "partEta",
+        postHoc = cse ~ gender, 
+        emMeans = ~ gender, 
+        emmPlots = TRUE)
+
+robo_care %>% 
+  group_by(gender) %>% 
+  summarise(cse_mean = mean(cse), 
+            count = n(),
+            cse_se = std.error(cse)) %>% 
+  mutate(cse_ci = cse_se * 1.96) %>% 
+  ggplot() +
+  aes(x = gender, y = cse_mean, 
+      ymin = cse_mean - cse_ci, 
+      ymax = cse_mean + cse_ci,
+      group = 1) +
+  geom_errorbar(width = 0.2) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+  labs(title = "Männer haben eine höhere Kontrollüberzeugung im Umgang mit Technik",
+       subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+       x = "Geschlecht",
+       y = "Kontrollüberzeugung im Umgang mit Technik [1-6]")
+
+  
+
+
+
+```
+
