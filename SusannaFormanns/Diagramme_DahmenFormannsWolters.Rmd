@@ -33,14 +33,14 @@ dataset %>%
   geom_errorbar(width = 0.2) +
   scale_y_continuous(limits = c(0,5)) +
   labs(x = "Geschlecht",
-      y = "Bereitschaft, sich von einem Robert die Haare schneiden zu lassen",
-      title = "Frauen würden sich eher von einem Roboter die Haare schneiden lassen als Männer.",
+      y = "Bereitschaft, sich von einem Roboter die Haare schneiden zu lassen",
+      title = "Männer würden sich eher von einem Roboter die Haare schneiden lassen als Frauen.",
       subtitle = "Geschlechtsunterschiede im Säulendiagramm",
       caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
  theme_linedraw() +
   NULL
 
-ggsave("Diagramm_Geschlecht.pdf", width = 9, height = 10)
+ggsave("Diagramm_Geschlecht_neu.pdf", width = 9, height = 10)
 
 ```
 
@@ -57,13 +57,13 @@ dataset %>%
   geom_errorbar(width = 0.2) +
   scale_y_continuous(limits = c(0,5)) +
   labs(x = "Jobtyp",
-      y = "Bereitschaft, sich von einem Robert die Haare schneiden zu lassen",
+      y = "Bereitschaft, sich von einem Roboter die Haare schneiden zu lassen",
       title = "Es gibt Unterschiede zwischen den Jobtypen in der Bereitschaft sich von einem Roboter die Haare schneiden zu lassen.",
       subtitle = "Unterschiede bzgl. Jobtypen im Säulendiagramm",
       caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
  theme_linedraw() +
   NULL
 
-ggsave("Diagramm_Jobtyp.pdf", width = 15, height = 10)
+ggsave("Diagramm_Jobtyp_neu.pdf", width = 15, height = 10)
 
 ```
