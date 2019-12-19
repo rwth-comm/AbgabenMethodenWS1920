@@ -22,19 +22,17 @@ Nach Anpassungen:
       geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
       geom_errorbar(width = 0.2) +
       scale_y_continuous(limits = c(0,5)) +
-      #labs(x = "Geschlecht", 
-      #     y = "KUT [0-5]", 
-      #     title = "Männer trauen sich bei Technik mehr zu", 
-      #     subtitle = "Geschlechtsunterschiede im Säulendiagramm", 
-      #     caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
+      labs(x = "Geschlecht", 
+           y = "KUT [0-5]", 
+           title = "Männer trauen sich bei Technik mehr zu", 
+           subtitle = "Geschlechtsunterschiede im Säulendiagramm (n = 322)", 
+           caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
       theme_minimal() +
       NULL
 
 ![](Diagramme_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-    ggsave("Diagramm_HildebrandtCalero2.pdf")
-
-    ## Saving 7 x 5 in image
+    ggsave("Diagramm.pdf", width = 5, height = 4)
 
     devtools::install_github("HCIC/r-tools")
 
@@ -66,3 +64,26 @@ Nach Anpassungen:
     ## NULL
 
     ggsave("Diagramm_GaneshabalanStuhlmannKlein.pdf", width = 210, height = 297, units = "mm")
+
+
+    datensatz %>%
+     filter(gender !="keine Angabe") %>%
+     group_by(gender) %>%
+     summarise(robo_hair_wash_m = mean(robo_hair_wash, na.rm= T),
+               robo_hair_wash_sem = std.error(robo_hair_wash)) %>%
+    ggplot() +
+      aes(x = gender, weight = robo_hair_wash_m, ymin = robo_hair_wash_m - robo_hair_wash_sem, ymax = robo_hair_wash_m + robo_hair_wash_sem) +
+      geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
+      geom_errorbar(width = 0.2) +
+      scale_y_continuous(limits = c(0,5)) +
+     labs(x = "Geschlecht",
+          y = "robo_hair_wash [0-5]",
+          title = "Männer lassen lieber Haare von Roboter waschen",
+          subtitle = "Geschlechtsunterschiede im Säulendiagramm",
+          caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
+     theme_linedraw() +
+      NULL
+
+![](Diagramme_HildebrandtCalero_files/figure-markdown_strict/unnamed-chunk-3-2.png)
+
+     # aes(x = gender, weight = robo_hair_wash_m, ymin = robo_hair_wash_m-robo_hair_wash_sem, ymax = robo_hair_wash_m+robo_hair_wash_sem, fill = gender) +
