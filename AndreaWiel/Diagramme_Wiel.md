@@ -1,7 +1,7 @@
     library(ggplot2)
 
     ggplot(datensatz) +
-     aes(x = gender, weight = human_toilett) +
+     aes(x = gender, weight = pflege) +
      geom_bar(fill = "#0c4c8a") +
      labs(x = " ", y = " ", title = " ", subtitle = " ", caption = " ") +
      theme_linedraw()
@@ -11,18 +11,18 @@
     datensatz %>% 
       filter(gender != "keine Angabe") %>%
       group_by(gender) %>%
-      summarise(human_toilett_m = mean(human_toilett, na.rm = TRUE)-1, human_toilett_sem = std.error(human_toilett)) %>%
+      summarise(pflege_m = mean(pflege, na.rm = TRUE)-1, pflege_sem = std.error(pflege)) %>%
     ggplot() +
-     aes(x = gender, weight = human_toilett_m, 
-         ymin = human_toilett_m-human_toilett_sem, 
-         ymax = human_toilett_m+human_toilett_sem, 
+     aes(x = gender, weight = pflege_m, 
+         ymin = pflege_m-pflege_sem, 
+         ymax = pflege_m+pflege_sem, 
          fill = gender) +
      geom_bar(fill = c(rwthfarben$green, rwthfarben$bordeaux), width = 0.4) +
       geom_errorbar(width = 0.2) +
       scale_y_continuous(limits = c(0,5)) +
      labs(x = "Geschlecht",
-          y = "human_toilett [0-5]",
-          title = "Frauen und Männer lassen sich gleich oft von einem Menschen zur Toilette bringen",
+          y = "pflege [0-5]",
+          title = "Frauen & Männer lassen sich gleich oft pflegen",
           subtitle = "Geschlechtsunterschiede in Säulendiagrammen",
           caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
      theme_linedraw() +
