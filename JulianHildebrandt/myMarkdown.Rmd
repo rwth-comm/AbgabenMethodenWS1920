@@ -1,0 +1,50 @@
+---
+title: "myMarkdown"
+author: "JRH and ACV"
+date: "11 12 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+datensatz <- readRDS("robo_pflege.rds")
+
+
+datensatz %>%
+  group_by(job_type) %>% 
+  summarise(robo_toilett_m = mean(robo_toilett, na.rm = T)-1, robo_toilett_sem = std.error(robo_toilett), Varianz = var(robo_toilett), SD = sd(robo_toilett)) %>%
+ggplot() +
+  aes(x = job_type, weight = robo_toilett_m, ymin = robo_toilett_m-robo_toilett_sem , ymax = robo_toilett_m+robo_toilett_sem, fill = job_type) +
+  geom_bar(fill = "#FBA29D") +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Jobtyp",
+      y = "Anzahl der Zustimmungen",
+      title = "Studierende haben eine höhere Akzeptanz gegenüber Roboter beim Toilettengang",
+      subtitle = "Balkendiagramm zu den Jobtypen") +
+ theme_fivethirtyeight()
+NULL
+
+
+
+datensatz %>%
+  group_by(job_type) %>% 
+  summarise(robo_toilett_m = mean(robo_toilett, na.rm = T)-1, robo_toilett_sem = std.error(robo_toilett)) %>%
+ggplot() +
+  aes(x = job_type, weight = robo_toilett_m, ymin = robo_toilett_m-robo_toilett_sem , ymax = robo_toilett_m+robo_toilett_sem, fill = job_type) +
+  geom_bar(fill = "#FBA29D") +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Jobtyp",
+      y = "Anzahl der Zustimmungen",
+      title = "Studierende haben eine höhere Akzeptanz gegenüber Roboter beim Toilettengang",
+      subtitle = "Balkendiagramm zu den Jobtypen") +
+ theme_fivethirtyeight()
+NULL
+
+```
+
