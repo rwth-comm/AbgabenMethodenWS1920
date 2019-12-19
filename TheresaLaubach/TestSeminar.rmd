@@ -1,0 +1,24 @@
+---
+title: "T-Test in R"
+author: "TL"
+date: "13 12 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+data <- readRDS("robo_pflege.rds")
+library(tidyverse)
+
+t.test(data$robo_bath, mu = 3.5)
+
+
+
+```
+
