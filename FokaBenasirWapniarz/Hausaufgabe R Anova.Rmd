@@ -1,0 +1,63 @@
+---
+title: "Hausaufgabe R Anova"
+author: "WapniarzHohne"
+date: "19 12 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(plotrix)
+library(jmv)
+```
+
+```{r}
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+## Varianzanalyse
+
+```{r ANOVA}
+datensatz %>%
+  ANOVA(dep = "robo_body", factors = c("gender"), effectSize = "partEta", postHoc = robo_body ~ gender, emMeans = ~ gender, emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+  summarise(robo_body_mean = mean(robo_body, na.rm = TRUE)-1, 
+            count = n(),
+            robo_body_se = std.error(robo_body)) %>%
+mutate(robo_body_ci = robo_body_se * 1.96) %>%
+  ggplot() +
+  aes(x = gender, fill = gender,
+      y = robo_body_mean,
+      ymin = robo_body_mean - robo_body_ci,
+      ymax = robo_body_mean + robo_body_ci,
+      group = 1) +
+  geom_col(width = 0.4) +
+  geom_line() +
+  geom_errorbar(width = 0.2) + 
+  scale_y_continuous(limits = c(0,5), breaks = 0:5) + 
+  labs(title = "Männer sind dazu bereit, die Körperpflege von eine Roboter durchführen zu lassen", 
+       subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+       x = "Geschlecht",
+       y = "Bereitschaft von einem Roboter die Körperpflege durchführen zu lassen [0-5]", fill = "Geschlecht")
+```
+Es gibt unterschiede zwischen den Geschlechtern in Hinblick auf die Bereitschaft die Körperpflege von einem Roboter durchführen zu lassen (F(2,290)=5.44***, p < 0.005). Dabei unterscheiden sich jedoch nur Männer und Frauen in der Bereitschaft, die Körperpflege von einem Roboter durchführen zu lassen (Unterschied M = 0.527, t(290) = 3.257, p-tukey < 0.004).
+
+
+
+
+```{r ANOVA}
+datensatz %>%
+  filter(gender !="keine Angabe") %>%
+ mutate(gender = fct_recode(gender, "männlich" = "keine Angabe")) %>% 
+  filter(job_type %in% c("Studierend/Schüler/in", "Arbeitnehmer/in"))%>% 
+  ancova(dep = "robo_body", factors = c("gender", "job_type"),
+         covs = c("age"), 
+        effectSize = "partEta",
+        postHoc = robo_body ~ gender + job_type + gender:job_type,
+        emMeans = ~ gender + job_type + gender:job_type,
+        emmPlots = TRUE)
+```
