@@ -15,9 +15,9 @@ library(ggplot2)
 library(ggthemes)
 datensatz <- readRDS("robo_pflege.rds")
 
-install.packages("devtools")
+# install.packages("devtools")
 library(devtools)
-devtools::install_github("HCIC/r-tools")
+# devtools::install_github("HCIC/r-tools")
 rwthfarben <- hcictools::rwth.colorpalette()
 
 ```
