@@ -75,3 +75,18 @@ datensatz %>%
 
 
 ```
+
+```{r ANCOVA}
+datensatz %>%
+
+ancova(dep = "robo_wash", factors = c("gender", "job_type"),
+       covs = c("age"),
+      effectSize = "partEta",
+     postHoc = robo_wash ~ gender + job_type + gender: job_type,
+     emMeans = ~ gender + job_type + gender: job_type,
+     emmPlots = TRUE)
+
+
+```
+
+
