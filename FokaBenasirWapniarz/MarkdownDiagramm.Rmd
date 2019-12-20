@@ -1,0 +1,65 @@
+---
+title: "Diagramme_HohneWapniarz"
+author: "BW and CH"
+date: "12 12 2019"
+output: md_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+```
+
+devtools::install_github("HCIC/r-tools")
+
+rwthfarben <- hcictools::rwth.colorpalette()
+
+ggplot(datensatz) +
+ aes(x = gender, weight = pflege) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ",
+      y = " ",
+      title = " ",
+      subtitle = " ", 
+      caption = " ") +
+ theme_linedraw()
+ 
+ ##Todo:
+ # 1. richtige Werte
+ # 2. Beschriftungen
+ # 3. Fehlerindikatoren
+ # 4. Optik
+ # 5. Y-Achse
+ # 6. Abspeichern
+ 
+datensatz %>%
+   filter(gender != "keine Angabe") %>%
+   group_by(gender) %>%
+   summarise(pflege_m = mean(pflege)-1, pflege_sem = std.error(pflege)) %>%
+   
+ ggplot() +
+ aes(x = gender, weight = pflege_m, ymin = pflege_m-pflege_sem , ymax = pflege_m+pflege_sem ) +
+ geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
+ geom_errorbar(width = 0.2) +
+ scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Geschlecht",
+      y = "Pflege von einem Roboter[0-6]",
+      title = "Frauen lassen sich eher von einem Roboter pflegen",
+      subtitle = "Geschlechtsunterschiede im Säulendiagramm", 
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
+ theme_linedraw()+
+ NULL
+ ggsave("FokaBenasirWapniarz/Diagramme_HohneWapniarz.pdf", width = 210, height = 297, units = "mm")
+ 
