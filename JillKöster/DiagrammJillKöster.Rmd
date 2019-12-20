@@ -1,6 +1,6 @@
 ---
 title: "DiagrammJillKöster"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -53,3 +53,25 @@ labs(title = "Männer würden sich eher von einem Roboter waschen lassen",
              
 ```
 
+```{r MANOVA}
+
+datensatz %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(human = mean(human_wash, na.rm = TRUE),
+  roboter = mean(robo_wash, na.rm = TRUE))  %>%
+  pivot_longer(cols = c(human, roboter),
+               names_to = "wash_by",
+               values_to = "value") %>%
+  ggplot() +
+  aes(x = gender, y = value, color = wash_by, group = wash_by) +
+  geom_point(size = 3) +
+  geom_line() +
+  scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+  labs(title = "Männer würden sich eher von einem Roboter waschen lassen",
+       subtitle = "Geschlechtsunterschiede im Punktdiagramm (n = 322)",
+       x = "Geschlecht",
+       y = "Bereitschaft, sich waschen zu lassen [1-6]")
+
+
+```
