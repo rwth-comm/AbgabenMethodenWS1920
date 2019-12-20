@@ -1,0 +1,94 @@
+---
+title: "Diagramme_KeverSommermann"
+author: "Katja Kever; Marie Sommermann"
+date: "10 12 2019"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(jmv)
+datensatz<-readRDS("~/AbgabenMethodenWS1920/MarieSommermann/robo_pflege.rds")
+
+devtools::install_github("HCIC/r-tools")
+
+rwthfarben<-hcictools::rwth.colorpalette()
+```
+
+
+
+```{r}
+ggplot(datensatz) +
+ aes(x = gender, weight = robo_bath) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ",
+ y = " ",
+ title = " ",
+ subtitle = " ",
+ caption = " ") +
+ theme_linedraw()
+
+```
+
+```{r}
+datensatz %>% 
+  filter(gender != "keine Angabe") %>% 
+  group_by(gender) %>% 
+  summarise(pflege_m = mean(pflege)-1, pflege_sem =std.error(pflege)) %>% 
+  
+ggplot() +
+ aes(x = gender, weight = pflege_m, ymin = pflege_m-pflege_sem, ymax = pflege_m + pflege_sem, fill = gender) +
+ geom_bar(fill= c(rwthfarben$turquois, rwthfarben$bordeaux), width = 0.4) +
+  geom_errorbar(width=0.2) +
+  scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Geschlecht",
+ y = "Pflege (0-5)",
+ title = "Frauen würden sich eher pflegen lassen",
+ subtitle = "Geschlechtsunterschiede im Säulendiagramm",
+ caption = "Fehlerindikatoren zeigen den Standardfehler des Mittelwerts.") +
+ theme_linedraw()+
+  NULL
+ggsave("~/AbgabenMethodenWS1920/MarieSommermann/Diagramm_KeverSommermann.pdf", width=210, height = 297, units="mm")
+
+```
+
+## Punktdiagramm
+
+```{r}
+datensatz %>% 
+ANOVA(dep = "robo_bath", factors = c("gender"), 
+      effectSize = "partEta",
+      homo = T,
+      postHoc = robo_bath ~ gender,
+      emMeans = ~ gender,
+      emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+  summarise(robo_bath_mean = mean(robo_bath),
+            na.rm = TRUE, 
+            count = n(),
+            robo_bath_se = std.error(robo_bath)) %>%
+  mutate(robo_bath_ci = robo_bath_se *1.96) %>%
+  ggplot() + 
+  aes(x = gender, y = robo_bath_mean,
+      ymin = robo_bath_mean - robo_bath_ci,
+      ymax = robo_bath_mean + robo_bath_ci,
+      group = 1) +
+geom_errorbar(width = 0.2) +
+geom_point() +
+geom_line() + 
+scale_y_continuous(limits = c(0,5), breaks = 0:5)
+labs(title = " ",
+     subtitle = " ",
+     x = "Geschlecht",
+     y = "Zustimmung sich von einem Roboter baden zu lassen [0-5]")
+```
+ 
