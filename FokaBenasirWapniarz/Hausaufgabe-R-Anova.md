@@ -59,3 +59,23 @@ Bereitschaft die Körperpflege von einem Roboter durchführen zu lassen
 Männer und Frauen in der Bereitschaft, die Körperpflege von einem
 Roboter durchführen zu lassen (Unterschied M = 0.527, t(290) = 3.257,
 p-tukey &lt; 0.004).
+
+    datensatz %>%
+      filter(gender != "keine Angabe") %>%
+      group_by(gender) %>%
+      summarise(human = mean(human_body, na.rm = TRUE),
+                roboter = mean(robo_body, na.rm = TRUE)) %>%
+      pivot_longer(cols = c(human, roboter),
+                   names_to = "body_by",
+                   values_to = "value") %>%
+      ggplot() +
+      aes(x = gender, y = value, color = body_by, group = body_by) +
+      geom_point(size = 3) +
+      geom_line() +
+      scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+      labs(title = "Beide Geschlechter würden sich lieber von einem Menschen den Körper pflegen lassen.",
+           subtitle = "Geschlechtsunterschiede im Punktdiagramm (n = 322)",
+           x = "Geschlecht",
+           y = "Bereitschaft, sich den Körper pflegen zu lassen [1-6]")
+
+![](Hausaufgabe-R-Anova_files/figure-markdown_strict/MANOVA-1.png)
