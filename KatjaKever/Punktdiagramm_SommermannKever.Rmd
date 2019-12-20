@@ -1,10 +1,8 @@
 ---
-title: "Diagramme_KeverSommermann"
+title: "Diagramm_SommermannKever"
 author: "Katja Kever; Marie Sommermann"
 date: "10 12 2019"
-output:
-  html_document:
-    df_print: paged
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -15,14 +13,12 @@ library(plotrix)
 library(ggplot2)
 library(ggthemes)
 library(jmv)
-datensatz<-readRDS("~/AbgabenMethodenWS1920/MarieSommermann/robo_pflege.rds")
 
-devtools::install_github("HCIC/r-tools")
+datensatz <- readRDS("robo_pflege.rds")
+
 
 rwthfarben<-hcictools::rwth.colorpalette()
 ```
-
-
 
 ```{r}
 ggplot(datensatz) +
@@ -34,7 +30,6 @@ ggplot(datensatz) +
  subtitle = " ",
  caption = " ") +
  theme_linedraw()
-
 ```
 
 ```{r}
@@ -55,8 +50,6 @@ ggplot() +
  caption = "Fehlerindikatoren zeigen den Standardfehler des Mittelwerts.") +
  theme_linedraw()+
   NULL
-ggsave("~/AbgabenMethodenWS1920/MarieSommermann/Diagramm_KeverSommermann.pdf", width=210, height = 297, units="mm")
-
 ```
 
 ## Punktdiagramm
@@ -91,4 +84,5 @@ labs(title = " ",
      x = "Geschlecht",
      y = "Zustimmung sich von einem Roboter baden zu lassen [0-5]")
 ```
- 
+
+
