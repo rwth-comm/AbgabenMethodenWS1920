@@ -1,0 +1,68 @@
+---
+title: "Hausaufgabe für den 20.12."
+author: "AndreaWiel"
+date: "17 Dezember 2019"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(jmv)
+datensatz <- readRDS("C:/Users/Andrea Kristina/Desktop/RWTH/ws19/Basismodul Seminar Ordner fuer R/AbgabenMethodenWS1920/AndreaWiel/robo_pflege.rds")
+```
+
+
+```{r}
+datensatz %>%
+ANOVA(dep = "robo_toilett", factors = c("gender"), 
+      effectSize = ("partEta"),
+      postHoc = robo_toilett ~ gender,
+              emMeans = ~ gender,
+        emmPlots = TRUE)
+
+```
+Es gibt einen signifikanten Unterschied in Hinblick auf die Bereitschaft sich von einem Roboter auf die Toilette bringen zu lassen (F(2, 290)=7.10***, p < .001). Dabei unterscheiden sich aber nur Männer und Frauen. (Unterschied M= 0.681, t(290)=3.642, p-tukey <-- .001).
+
+```{r}
+datensatz %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>% 
+  summarise(robo_toilett_mean  = mean(robo_toilett, na.rm = TRUE) - 1, 
+            count = n(),
+            robo_toilett_se = std.error(robo_toilett)) %>% 
+  mutate(robo_toilett_ci = robo_toilett_se * 1.96) %>% 
+  ggplot() +
+  aes(x = gender, fill = gender,
+      y = robo_toilett_mean,
+      ymin = robo_toilett_mean - robo_toilett_ci, 
+      ymax = robo_toilett_mean + robo_toilett_ci,
+      group = 1) +
+  geom_col(width = 0.4) +
+  geom_line() +
+  geom_errorbar(width = 0.2) +
+  scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+  labs(title = "Männer sind eher bereit, sich von einem Roboter zur Toilette bringen zu lassen",
+       subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+       x = "Geschlecht",
+       y = "Bereitschaft sich von einem Roboter zur Toilette bringen zu lassen [0-5]",
+       fill = "Geschlecht")
+```
+
+```{r}
+datensatz %>% 
+  filter(gender != "keine Angabe") %>% 
+  mutate(gender = fct_recode(gender, "männlich" = "keine Angabe")) %>% 
+  filter(job_type %in% c("Studierend/Schüler/in", "Arbeitnehmer/in")) %>% 
+  mutate(job_type = fct_recode(job_type, "Studierend/Schüler/in" = "Arbeitssuchend",
+                               "Studierend/Schüler/in" = "Selbstständig",
+                               "Studierend/Schüler/in" = "Rentner/in")) %>% 
+  ancova(dep = "robo_toilett", factors = c("gender", "job_type"),
+         covs = c("age"), 
+        effectSize = "partEta",
+        postHoc = robo_toilett ~ gender + job_type + gender:job_type,
+        emMeans = ~ gender + job_type + gender:job_type,
+        emmPlots = TRUE)
+```
+

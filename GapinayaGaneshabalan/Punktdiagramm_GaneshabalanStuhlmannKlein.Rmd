@@ -1,0 +1,54 @@
+---
+title: "Punktdiagramm_GaneshabalanKleinStuhlmann"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(jmv)
+datensatz <- readRDS("robo_pflege.rds")
+#.libPaths(rwthfarben<-hcictools::rwth.colorpalette())
+```
+
+## Punktdiagramm
+
+```{r}
+datensatz %>% 
+ANOVA(dep = "robo_toilett", factors = c("gender"), 
+      effectSize = "partEta",
+      homo = T,
+      postHoc = robo_toilett ~ gender,
+      emMeans = ~ gender,
+      emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+   
+  summarise(robo_toilett_mean = mean(robo_toilett, na.rm = TRUE)-1,
+            
+            count = n(),
+            robo_toilett_se = std.error(robo_toilett)) %>%
+  mutate(robo_toilett_ci = robo_toilett_se *1.96) %>%
+  ggplot() + 
+  aes(x = gender, y = robo_toilett_mean,
+      ymin = robo_toilett_mean - robo_toilett_ci,
+      ymax = robo_toilett_mean + robo_toilett_ci,
+      group = 1) +
+geom_col()+
+geom_errorbar(width = 0.2) +
+geom_line() + 
+scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+labs(title = "Kein signifikanter Unterschied zwischen den Geschlechtern ",
+     subtitle = " ",
+     x = "Geschlecht",
+     y = "Zustimmung sich von einem Roboter auf Toilette bringen zu lassen [0-5]")
+
+```
+
+

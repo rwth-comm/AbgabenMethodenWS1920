@@ -1,0 +1,92 @@
+---
+title: "DiagrammJillKöster"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(jmv)
+datensatz <- readRDS("robo_pflege.rds")
+```
+
+# Varianzanalyse
+
+```{r ANOVA}
+datensatz %>%
+
+ANOVA(dep = "robo_wash", factors = c("gender"), 
+      effectSize = "partEta",
+     postHoc = robo_wash ~ gender,
+     emMeans = list ~ gender,
+     emmPlots = TRUE)
+```
+
+Es gibt Unterschiede zwischen den Geschlechtern in Hinblick auf die Bereitschaft sich von einem Roboter waschen zu lassen. (F(2, 290)=7.95***, p < .001). Dabei unterscheiden sich aber nur Männer und Frauen. (Unterschied M= 0.719, t(290)=3.924, p-tukey < .001)
+
+
+```{r}
+datensatz %>%
+  group_by(gender) %>%
+  summarise (robo_wash_mean = mean(na.rm = TRUE, robo_wash) -1,
+             count = n(),
+             robo_wash_se = std.error (robo_wash)) %>%
+  mutate(robo_wash_ci = robo_wash_se * 1.96) %>%
+  ggplot() +
+  aes(x = gender, fill = gender,
+      y = robo_wash_mean,
+      ymin = robo_wash_mean - robo_wash_ci,
+      ymax = robo_wash_mean + robo_wash_ci,
+      group = 1) +
+  geom_col(width = 0.4) +
+  geom_errorbar(width= 0.2) +
+  geom_line () +
+scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+labs(title = "Männer würden sich eher von einem Roboter waschen lassen",
+     subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+     x = "Geschlecht",
+     y = "Bereitschaft sich von einem Roboter waschen zu lassen 0-5]",
+     fill = "Geschlecht")
+             
+```
+
+```{r MANOVA}
+
+datensatz %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(human = mean(human_wash, na.rm = TRUE),
+  roboter = mean(robo_wash, na.rm = TRUE))  %>%
+  pivot_longer(cols = c(human, roboter),
+               names_to = "wash_by",
+               values_to = "value") %>%
+  ggplot() +
+  aes(x = gender, y = value, color = wash_by, group = wash_by) +
+  geom_point(size = 3) +
+  geom_line() +
+  scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+  labs(title = "Männer würden sich eher von einem Roboter waschen lassen",
+       subtitle = "Geschlechtsunterschiede im Punktdiagramm (n = 322)",
+       x = "Geschlecht",
+       y = "Bereitschaft, sich waschen zu lassen [1-6]")
+
+
+```
+
+```{r ANCOVA}
+datensatz %>%
+
+ancova(dep = "robo_wash", factors = c("gender", "job_type"),
+       covs = c("age"),
+      effectSize = "partEta",
+     postHoc = robo_wash ~ gender + job_type + gender: job_type,
+     emMeans = ~ gender + job_type + gender: job_type,
+     emmPlots = TRUE)
+
+
+```
+
+
