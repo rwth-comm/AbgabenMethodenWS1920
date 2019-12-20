@@ -11,6 +11,8 @@ library(tidyverse)
 library(ggplot2)
 library(plotrix)
 library(jmv)
+Sys.setlocale("LC_ALL", "German")
+              options(encoding = "UTF-8")
 ```
 
 ```{r}
@@ -67,4 +69,13 @@ datensatz %>%
        x = "Geschlecht",
        y = "Bereitschaft, sich den Körper pflegen zu lassen [1-6]")
 ```
+```{r ACNOVA}
 
+datensatz %>%
+
+  ancova(dep = "robo_body", factors = c("gender", "job_type"),
+         covs = c("age"),
+         effectSize = "partEta",
+         postHoc = robo_body ~ gender + job_type + gender:job_type, emMeans = ~ gender + job_type + gender:job_type,
+emmPlots = TRUE)
+```
