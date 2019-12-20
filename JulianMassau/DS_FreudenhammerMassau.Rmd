@@ -29,10 +29,16 @@ datensatz_kurz %>% ggplot() + aes(x = human_hair_cut) + geom_histogram(bins = 30
 datensatz_kurz %>% ggplot() + aes(x = robo_hair_cut) + geom_histogram(bins = 30, fill = "blue")
 ```
 
+
 # ohne Pipe
 ```{r}
-# psych::describe(datensatz(select(human_hair_cut)))
+# psych::describe(dataset(select(robo_hair_cut)))
+# Korrektur: dataset ist keine Funktion und describe() funktioniert nur mit mindestens zwei Spalten.
+# Lösung: psych::describe(select(dataset, robo_hair_cut, human_hair_cut))
 ```
 # mit Pipe
 ```{r}
-# datensatz %>% select(human_hair_cut)
+# dataset %>% select(robo_food)
+# Korrektur: Das ist nicht gleich zu der Zeile oben, da das describe() fehlt.
+# Lösung: dataset %>% select(robo_hair_cut, human_hair_cut) %>% psych::describe()
+```

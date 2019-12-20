@@ -1,6 +1,6 @@
 ---
 title: "DS_GaneshabalanKleinStuhlmann"
-output: md_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 datensatz <- readRDS("robo_pflege.rds") 
 
 library(tidyverse)
+library(esquisse)
+library(ggplot2)
+
 
 ```
 
@@ -20,9 +23,22 @@ datensatz %>% select(age, gender, robo_toilett, human_toilett) %>% psych::descri
 
 #umschreiben ohne pipe
 #psych::describe(select(datensatz, age, gender, robo_toilett, human_toilett))
+# Fast richtig, Sie haben sich an ein extra schweres Beispiel getraut. In Zeile 19 pipen Sie aber nochmal. 
+# Korrektur: select(psych::describe(select(datensatz, age, gender, robo_toilett, human_toilett)),vars, mean, sd, median, min, max) 
 
 datensatz %>% select(robo_toilett) %>% ggplot() + aes(x = robo_toilett) + geom_histogram(bins = 30, fill="purple")
 
 datensatz %>% select(human_toilett) %>% ggplot() + aes(x = human_toilett) + geom_histogram(bins = 30, fill="yellow")
+
+
+
+
+
+
+
+
+
+
+
 ```
 

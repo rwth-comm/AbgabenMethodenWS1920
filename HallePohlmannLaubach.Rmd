@@ -1,0 +1,44 @@
+---
+title: "HallePohlmannLaubach"
+author: "VH/LP/TL"
+date: "11 12 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+```
+
+```{r}
+library(devtools)
+```
+
+
+```{r}
+library(devtools)
+```
+
+```{r}
+datensatz <- readRDS("TheresaLaubach/robo_pflege.rds")
+```
+
+```{r}
+library(esquisse)
+```
+
+```{r}
+library(esquisse)
+```
+
+```{r}
+library(esquisse)
+```
+

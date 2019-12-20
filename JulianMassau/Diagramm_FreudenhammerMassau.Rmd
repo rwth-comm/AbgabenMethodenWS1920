@@ -1,0 +1,94 @@
+---
+title: "Diagramm_FreudenhammerMassau"
+author: "FreudenhammerMassau"
+date: "10 12 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(jmv)
+datensatz <- readRDS("robo_pflege.rds")
+#devtools::install_github("HCIC/r-tools")
+#rwthfarben <- hcictools::rwth.colorpalette()
+
+```
+
+```{r}
+ggplot(datensatz) +
+ aes(x = gender, weight = robo_toilett) +
+ geom_bar(fill = "#0c4c8a") +
+ labs(x = " ", y = " ", title = " ", subtitle = " ", caption = " ") +
+ theme_minimal()
+```
+
+## ToDo:
+1. richtige Werte
+2. korrekte Beschriftungen
+3. Fehlerbalken
+4. Optik
+5. Y-Achse 
+6. Speichern
+
+```{r}
+datensatz %>%
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>%
+  summarise(robo_toilett_m = mean(robo_toilett, na.rm = TRUE), robo_toilett_sem = std.error(robo_toilett)) %>%
+  
+ggplot() +
+ aes(x = gender, weight = robo_toilett_m , ymin = robo_toilett_m-robo_toilett_sem , ymax = robo_toilett_m+robo_toilett_sem , fill = gender) +
+  
+ geom_bar() +
+  geom_errorbar() +
+ labs(x = "Geschlecht", 
+      y = "Zustimmung_Robo_Toilett [1-6]", 
+      title = "Unterstützung Toilette Mann oder Frau?", 
+      subtitle = "Geschlechtsunterschiede im Säulendiagramm", 
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
+ theme_minimal()
+```
+
+Punktdiagramm
+```{r}
+datensatz %>% 
+ANOVA(dep = "robo_toilett", factors = c("gender"), 
+      effectSize = "partEta",
+      homo = T,
+      postHoc = robo_toilett ~ gender,
+      emMeans = ~ gender,
+      emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+  summarise(robo_toilett_mean = mean(robo_toilett), 
+            count = n(),
+            robo_toilett_se = std.error(robo_toilett)) %>%
+  mutate(robo_toilett_ci = robo_toilett_se *1.96) %>%
+  ggplot() + 
+  aes(x = gender, y = robo_toilett_mean, 
+      ymin = robo_toilett_mean - robo_toilett_ci,
+      ymax = robo_toilett_mean + robo_toilett_ci,
+      group = 1) +
+geom_errorbar(width = 0.2) +
+geom_point() +
+geom_line() + 
+scale_y_continuous(limits = c(1,6), breaks = 1:6)
+labs(title = "loremipsum",
+     subtitle = "loremipsum",
+     x = "Geschlecht",
+     y = "Zustimmung Toilettengang mit Roboter [1-6]")
+
+
+```
+
+Es gibt Unterschiede zwischen Geschlechtern in Hinblick auf die Akzeptanz sich beim Toilettengang von einem Roboter unterstützen zu lassen F(2,290)=7.10***, p < .001) Dabei unterscheiden sich aber nur Männer und Frauen (Unterschied m = 0.681, t(290) = 3.642, p-tukey < .001)
