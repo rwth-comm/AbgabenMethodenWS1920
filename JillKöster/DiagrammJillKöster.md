@@ -62,3 +62,23 @@ und Frauen. (Unterschied M= 0.719, t(290)=3.924, p-tukey &lt; .001)
          fill = "Geschlecht")
 
 ![](DiagrammJillKöster_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+
+    datensatz %>% 
+      filter(gender != "keine Angabe") %>%
+      group_by(gender) %>%
+      summarise(human = mean(human_wash, na.rm = TRUE),
+      roboter = mean(robo_wash, na.rm = TRUE))  %>%
+      pivot_longer(cols = c(human, roboter),
+                   names_to = "wash_by",
+                   values_to = "value") %>%
+      ggplot() +
+      aes(x = gender, y = value, color = wash_by, group = wash_by) +
+      geom_point(size = 3) +
+      geom_line() +
+      scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+      labs(title = "Männer würden sich eher von einem Roboter waschen lassen",
+           subtitle = "Geschlechtsunterschiede im Punktdiagramm (n = 322)",
+           x = "Geschlecht",
+           y = "Bereitschaft, sich waschen zu lassen [1-6]")
+
+![](DiagrammJillKöster_files/figure-markdown_strict/MANOVA-1.png)
