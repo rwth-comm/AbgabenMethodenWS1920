@@ -1,0 +1,51 @@
+---
+title: "Punktdiagramm_LaubachPohlmannHalle"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(jmv)
+datensatz <- readRDS("VanessaHalle/robo_pflege.rds")
+#.libPaths(rwthfarben<-hcictools::rwth.colorpalette())
+```
+
+##Punktdiagramm
+
+```{r}
+
+datensatz %>% 
+  ANOVA(dep = "robo_bath", factors = c("gender"), 
+        effectSize = "partEta",
+        homo = T,
+        postHoc = robo_bath ~ gender,
+        emMeans = ~ gender,
+        emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+  
+  summarise(robo_bath_mean = mean(robo_bath, na.rm = TRUE)-1,
+            count = n(),
+            robo_bath_se = std.error(robo_bath)) %>%
+mutate(robo_bath_ci = robo_bath_se *1.96) %>% 
+  ggplot() +
+   aes(x = gender, y = robo_bath_mean,
+      ymin = robo_bath_mean - robo_bath_ci,
+      ymax = robo_bath_mean + robo_bath_ci,
+      group = 1) +
+  geom_col()+
+  geom_errorbar(width = 0.2) +
+  geom_line() + 
+  scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+  labs(title = "Männer würden sich von Robotern eher baden lassen als Frauen",
+       subtitle = " ",
+       x = "Geschlecht",
+       y = "Zustimmung sich von einem Roboter baden zu lassen [0-5]")
+```
+

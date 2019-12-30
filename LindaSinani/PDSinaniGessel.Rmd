@@ -1,0 +1,54 @@
+---
+title: "PunktdiagrammSinaniGessel"
+author: "Linda Sinani, Xenia Gessel"
+date: "20 12 2019"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(jmv)
+datensatz <- readRDS("LindaSinani/robo_pflege.rds")
+#.libPaths(rwthfarben<-hcictools::rwth.colorpalette())
+```
+
+
+## Punktdiagramm
+
+```{r}
+datensatz %>% 
+  ANOVA(dep = "robo_hair_cut", factors = c("gender"), 
+        effectSize = "partEta",
+        homo = T,
+        postHoc = robo_hair_cut ~ gender,
+        emMeans = ~ gender,
+        emmPlots = TRUE)
+
+datensatz %>%
+  group_by(gender) %>%
+  
+  summarise(robo_hair_cut_mean = mean(robo_hair_cut, na.rm = TRUE)-1,
+            
+            count = n(),
+            robo_hair_cut_se = std.error(robo_hair_cut)) %>%
+  mutate(robo_hair_cut_ci = robo_hair_cut_se *1.96) %>%
+  ggplot() + 
+  aes(x = gender, y = robo_hair_cut_mean,
+      ymin = robo_hair_cut_mean - robo_hair_cut_ci,
+      ymax = robo_hair_cut_mean + robo_hair_cut_ci,
+      group = 1) +
+  geom_col()+
+  geom_errorbar(width = 0.2) +
+  geom_line() + 
+  scale_y_continuous(limits = c(0,5), breaks = 0:5) +
+  labs(title = "Männer würden sich von Robotern eher die Haare schneiden lassen als Frauen",
+       subtitle = " ",
+       x = "Geschlecht",
+       y = "Zustimmung sich von einem Roboter die Haare schneiden zu lassen [0-5]")
+```

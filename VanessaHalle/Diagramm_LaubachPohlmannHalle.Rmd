@@ -1,0 +1,45 @@
+---
+title: "Diagramm_HalleLaubach"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+
+datensatz <- readRDS("robo_pflege.rds")
+
+library(ggplot2)
+
+devtools::install_github("HCIC/r-tools")
+rwthfarben <- hcictools::rwth.colorpalette()
+
+datensatz %>% 
+  filter(gender != "keine Angabe") %>%
+  group_by(gender) %>% 
+  summarise(robo_hair_wash_m = mean(robo_hair_wash, na.rm = TRUE)-1, robo_hair_wash_sem = std.error(robo_hair_wash)) %>%
+
+ggplot() +
+ aes(x = gender, weight = robo_hair_wash_m, ymin = robo_hair_wash_m-robo_hair_wash_sem, ymax = robo_hair_wash_m+robo_hair_wash_sem, fill = gender) +
+ geom_bar(fill = c(rwthfarben$lightblue, rwthfarben$red), width = 0.4) +
+  geom_errorbar(width = 0.2) +
+ scale_y_continuous(limits = c(0,5)) +
+  labs(x = "Geschlecht", 
+      y = "robo_hair_wash [0-5]", 
+      title = "Männer lassen sich eher als Frauen die Haare von einem Roboter waschen", 
+      subtitle = "Geschlechtsunterschiede im Säulendiagramm",
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts.") +
+ theme_linedraw()+
+NULL
+ggsave("Diagramm_HalleLaubach.pdf")
+```
+
+
+
