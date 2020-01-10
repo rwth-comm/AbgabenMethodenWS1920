@@ -1,0 +1,37 @@
+---
+title: "Korrektur Diagramm"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+library(tidyverse)
+library(devtools)
+library(plotrix)
+library(ggplot2)
+library(ggthemes)
+library(ggplot2)
+
+
+datensatz <-readRDS("XeniaGessel/robo_pflege.rds")
+
+datensatz %>% 
+  filter(gender != "keine Angabe") %>% 
+  group_by(gender) %>% 
+  summarise(mittelwert_robo_hair_cut = mean(robo_hair_cut, na.rm = TRUE)-1, sem_robo_hair_cut = std.error(robo_hair_cut)) %>% 
+ggplot() +
+ aes(x = gender, weight = mittelwert_robo_hair_cut, ymin = mittelwert_robo_hair_cut-sem_robo_hair_cut, ymax = mittelwert_robo_hair_cut+sem_robo_hair_cut, fill = gender) +
+ geom_bar(fill = c("red", "yellow"), width = 0.4) +
+ geom_errorbar(width = 0.2) +
+ scale_y_continuous(limits = c(0,5)) +
+ labs(x = "Geschlecht", 
+      y = "Mittelwert der Bereitschaft", 
+      title = "Männer würden sich von einem Roboter eher die Haare schneiden lassen", 
+      subtitle = "Bereitschaft sich die Haare von einem Roboter schneiden zu lassen", 
+      caption = "Fehlerindikatoren zeigen Standardfehler des Mittelwerts") +
+ theme_minimal() +
+ NULL
+

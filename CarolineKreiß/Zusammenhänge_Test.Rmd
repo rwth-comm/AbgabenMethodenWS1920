@@ -1,0 +1,44 @@
+---
+title: "Zusammenhänge"
+author: "Caroline Kreiß"
+date: "09.01.2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(jmv)
+library(dataforsocialscience)
+library(ggplot2)
+```
+# Korrelationen
+
+```{r korrelationen}
+df <- dataforsocialscience:: robo_care
+cor(df$age, df$cse, method = "pearson")
+cor(df$age, df$cse, method = "spearman") 
+cor(df$age, df$cse, method = "kendall")
+
+cor.test(df$age, df$cse, method= "kendall")
+
+
+```
+Es gibt einen signifikanten Zusammenhang zwischen dem Alter und der Kontrollüberzeugung im Umgang mit Technik. ($\tau= -0.133$, $p<.01$). 
+Das bedeutet, dass mit steigendem ALter die Kontrollüberzeugung im Umgang mit Technik sinkt. 
+
+```{r gerichtete}
+cor.test(df$age, df$cse, method= "kendall", alternative = "less")
+```
+# Exploration mit Korrelationen
+```{r corrMatrix}
+jmv::corrMatrix(df, c("age", "cse", "robo_bed", "robo_med", "robo_food"), kendall= TRUE, plots =TRUE, plotDens = TRUE, plotStats = TRUE)
+```
+
+# Visualisierungen
+```{r ggplot}
+df %>% ggplot()+ aes(x= age, y=cse) + geom_jitter (alpha= 0.25) +
+geom_smooth(method= "lm", colour= "black") + 
+cowplot::theme_half_open()
+labs(x= "Alter", y= "KUT", title= "Alter und KUT korrelieren negativ")
+```

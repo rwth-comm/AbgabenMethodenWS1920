@@ -1,0 +1,58 @@
+---
+title: "Punktediagramm"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dataforsocialscience)
+library(jmv)
+library(plotrix)
+library(knitr)
+library(ggplot2)
+```
+
+```{r}
+robo_care
+robo_care %>% filter(gender != "rather not say") %>% 
+t.test(data = ., robo_hair_wash ~ gender)
+
+t_d <- robo_care %>% 
+  filter(gender != "rather not say")
+
+t.test(x = t_d$robo_hair_wash, y = t_d$human_hair_wash, paired = TRUE)
+```
+```{r ANOVA}
+
+robo_care %>% 
+  ANOVA(dep = "robo_hair_wash", factors = c("gender"),
+        effectSize = "partEta",
+        postHoc = robo_hair_wash ~ gender,
+        emMeans = ~ gender,
+        emmPlots = TRUE)
+
+robo_care %>% 
+  group_by(gender) %>% 
+  summarise(robo_hair_wash_mean = mean(robo_hair_wash), 
+            count = n(),
+            robo_hair_wash_se = std.error(robo_hair_wash)) %>% 
+  mutate(robo_hair_wash_ci = robo_hair_wash_se * 1.96) %>% 
+  ggplot() +
+    aes(x = gender, y = robo_hair_wash_mean, 
+        ymin = robo_hair_wash_mean - robo_hair_wash_ci,
+        ymax = robo_hair_wash_mean + robo_hair_wash_ci,
+        group = 1) +
+geom_errorbar(width = 0.2) +
+geom_point() +
+geom_line() + 
+scale_y_continuous(limits = c(1,6), breaks = 1:6) +
+labs(title = "Männer würden sich eher die Haare von einem Roboter waschen lassen",
+     subtitle = "Mittelwertplot mit 95% Konfidenzintervall",
+     x = "Geschlecht",
+     y = "Akzeptanz robo hair wash [1-6]")
+
+```
+
+
+

@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 
-datensatz <- readRDS("robo_pflege.rds")
+datensatz <- readRDS("robo_pflege.rds") 
 
 library(tidyverse)
 library(esquisse)

@@ -24,5 +24,12 @@ dataset %>% ggplot() +  aes(x = robo_hair_wash) + geom_histogram(bins = 30, fill
 dataset %>% ggplot() +  aes(x = human_hair_wash) + geom_histogram(bins = 30, fill="blue")
 ```
 
+´´´{r warning=FALSE}
+### mit Pipe
+# datensatz %>% psych::describe() %>% select(robo_hair_wash)
+
+### ohne Pipe
+# select(psych::describe(datensatz), robo_hair_wash)
+
 
 
