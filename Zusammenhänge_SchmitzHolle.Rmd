@@ -1,0 +1,51 @@
+---
+title: "Zusammenhänge_SchmitzHolle"
+author: "JS und MH"
+date: "1/10/2020"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(jmv)
+library(ggplot2)
+library(cowplot)
+```
+
+
+```{r korrelation}
+# Hypothese: Es gibt einen Zusammenhang zwischen dem Alter und der Bereitschaft, sich von einem Roboter füttern zu lassen.
+datensatz <- readRDS("MaikeHolle/robo_pflege.rds")
+
+cor(datensatz$age, datensatz$robo_food, method = "spearman", use = "pairwise.complete.obs")
+
+jmv::corrMatrix(datensatz, c("age", "robo_food"), spearman = TRUE)
+
+# Es besteht kein signikanter Zusammenhang zwischen Alter und der Bereitschaft, sich von einem Roboter füttern zu lassen (r=-.063, p=.285)“.
+
+datensatz %>% ggplot() + aes(x = age, y = robo_food) +
+  geom_jitter(alpha = 0.2) +
+  geom_smooth(method = "lm", color = "black") + cowplot::theme_half_open() +
+  labs(x = "Alter", y = "Bereitschaft, sich von einem Roboter füttern zu lassen", title = "Es gibt keinen Zusammenhang zwischen dem Alter und der \nBereitschaft, sich füttern zu lassen.")
+```
+
+```{r lineare Regression}
+# Hypothese: Je höher das Alter, desto höher die Bereitschaft, sich von einem Roboter füttern zu lassen.
+
+jmv::linReg(datensatz, dep = "robo_food", covs = c("age"),
+            blocks = list("age"),
+            r2Adj = TRUE,
+            anova = TRUE,
+            stdEst = TRUE)
+
+# Die lineare Regression zeigt, dass ein Modell mit einem Prädiktor (F(1, 291) = 1.63, p = 0.202, adj.r2 = 0.002) nicht signifikant wird. Die dazugehörige Formel lautet: robo_food = 4.127 + (-0.008) * age.
+
+datensatz %>% ggplot() + aes(x = age, y = robo_food) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+
+
