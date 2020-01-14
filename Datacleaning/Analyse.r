@@ -1,9 +1,9 @@
 ## Datacleaning
 library(tidyverse)
-# raw <- read_csv("data/leadership.csv")
+# raw <- read_csv("data/Omni.csv")
 
 source("data/qualtricshelpers.R")
-filename <- "data/leadership.csv"
+filename <- "data/Omni.csv"
 
 #Rohdaten laden
 
@@ -62,7 +62,7 @@ names(raw.short) [47] <- "Hobbies"
 names(raw.short) [48] <- "Freizeit Arbeit"
 names(raw.short) [49] <- "Freizeitgestaltung"
 
-generate_codebook(raw.short,filename,"data/codebook.csv")
+
 
 
 

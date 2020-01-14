@@ -1,0 +1,20 @@
+---
+title: "T-Test in R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+data <- readRDS("GapinayaGaneshabalan/robo_pflege.rds") 
+
+t.test(data$robo_toilett, mu=2.5) 
+
+
+t.test(data$robo_toilett, data$human_toilett, paired = TRUE)
+```
+
