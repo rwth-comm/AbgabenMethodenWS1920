@@ -98,7 +98,7 @@ raw.short$fg.Text <- as.factor(raw.short$FG.Text)
 
 raw.short$Schulabschluss <- ordered(raw.short$Schulabschluss,levels = c("Kein Schulabschluss", "Volks-oder Hauptschulabschluss", "Mittlere Reife/Realschulabschluss", "Fachhochschulreife/Fachabitur", "Allgemeine Hochschulreife/Abitur", "Abgeschlossene Berufsausbildung", "Bachelor", "Master", "Promotion", "Habilitation", "Keiner der hier genanneten"))
 
-scale.zustimmung <- c("Stimme völlig zu", "Stimme zzu", "Stimme eher zu", "Stimme eher nicht zu", "Stimme nicht zu", "Stimme garnicht zu")
+scale.zustimmung <- c("Stimme völlig zu", 2, 3, 4, 5, "Stimme gar nicht zu")
 
 raw.short$k.kut1 <- ordered(raw.short$kut1,levels = scale.zustimmung)
 raw.short$k.kut2 <- ordered(raw.short$kut2,levels = scale.zustimmung)

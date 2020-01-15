@@ -1,0 +1,36 @@
+---
+title: "Hypothese 2 Berechnung"
+output: html_document
+---
+
+Hypothese: Alter, Beruf und Familienstand beeinflussen den Stresspegel am Arbeitsplatz negativ. Verfahren: Three-way ANOVA. H0: Alter, Beruf und Familienstand haben keinen Einfluss auf den Stresspegel am Arbeitsplatz. H1: Alter, Beruf und Familienstand haben einen Einfluss auf den Stresspegel am Arbeitsplatz.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#ANOVA
+
+library(jmv)
+library(dataforsocialscience)
+library(knitr)
+library(tidyverse)
+library(psych)
+
+
+
+raw.short
+
+
+
+schluesselliste <- list("Stress"= c("WLB.-Stress/Arbeit", "WLB.Stress/Umgang"))
+
+scores <- scoreItems(schluesselliste, raw.short, missing= TRUE, min =1, max=6)
+
+bind_cols(raw.short, as.tibble(scores$scores))
+
+ANOVA(data=raw.short, dep= "Stress", factors= c("Jobbezeichnung", "Familienstand."))
+
+
+```
+
+
