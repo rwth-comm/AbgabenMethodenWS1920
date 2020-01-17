@@ -6,8 +6,13 @@ library (psych)
 source("data/qualtricshelpers.R")
 filename <- "data/Omni.csv"
 
-raw <- load_qualtrics_csv(filename)
-raw.short <- raw[, c(-1:-17, -42: -96, -142: -174)]
+#raw <- load_qualtrics_csv(filename)
+raw <- read_csv(filename)
+raw.test <- raw[c(-1,-2),]
+raw.test <- filter(raw.test, Status == "IP Address")
+raw.short <- raw.test[, c(-1:-17, -42: -96, -142: -174)]
+
+
 
 names(raw.short) [1] <- "Geschlecht"
 names(raw.short) [2] <- "Familienstand."
@@ -79,18 +84,18 @@ names(raw.short) [67] <-"FG.Auswahl"
 names(raw.short) [68] <-"FG.Text"
 names(raw.short) [69] <- "WLB.Erreichbarkeit"
 
-raw.short$dd.Geschlecht <- as.factor(raw.short$Geschlecht)
-raw.short$dd.Familienstand. <- as.factor(raw.short$Familienstand.)
-raw.short$dd.Alter <- as.factor(raw.short$Alter)
-raw.short$dd.Berufsstatus <- as.factor(raw.short$Berufsstatus)
-raw.short$dd.Ausbildung <- as.factor(raw.short$Ausbildung)
-raw.short$dd.Studiumsart <- as.factor(raw.short$Studiumsart)
-raw.short$dd.Jobbezeichnung <- as.factor(raw.short$Jobbezeichnung)
-raw.short$dd.Arbeitsverhältnisart <- as.factor(raw.short$Arbeitsverhältnisart)
-raw.short$dd.Berufserfahrung <- as.factor(raw.short$Berufserfahrung)
-raw.short$dd.Wochenarbeitsstunden <- as.factor(raw.short$Wochenarbeitsstunden)
-raw.short$dd.Urlaubstage <- as.factor(raw.short$Urlaubstage)
-raw.short$dd.Überstundenabbau <- as.factor(raw.short$Überstundenabbau)
+raw.short$Geschlecht <- as.factor(raw.short$Geschlecht)
+raw.short$Familienstand. <- as.factor(raw.short$Familienstand.)
+raw.short$Alter <- as.factor(raw.short$Alter)
+raw.short$Berufsstatus <- as.factor(raw.short$Berufsstatus)
+raw.short$Ausbildung <- as.factor(raw.short$Ausbildung)
+raw.short$Studiumsart <- as.factor(raw.short$Studiumsart)
+raw.short$Jobbezeichnung <- as.factor(raw.short$Jobbezeichnung)
+raw.short$Arbeitsverhältnisart <- as.factor(raw.short$Arbeitsverhältnisart)
+raw.short$Berufserfahrung <- as.factor(raw.short$Berufserfahrung)
+raw.short$Wochenarbeitsstunden <- as.factor(raw.short$Wochenarbeitsstunden)
+raw.short$Urlaubstage <- as.factor(raw.short$Urlaubstage)
+raw.short$Überstundenabbau <- as.factor(raw.short$Überstundenabbau)
 raw.short$am.Text <- as.factor(raw.short$AM.Text)
 raw.short$am.Auswahl <- as.factor(raw.short$AM.Auswahl)
 raw.short$fg.Auswahl <- as.factor(raw.short$FG.Auswahl)
@@ -100,10 +105,22 @@ raw.short$Schulabschluss <- ordered(raw.short$Schulabschluss,levels = c("Kein Sc
 
 scale.zustimmung <- c("Stimme völlig zu", 2, 3, 4, 5, "Stimme gar nicht zu")
 
-raw.short$k.kut1 <- ordered(raw.short$kut1,levels = scale.zustimmung)
-raw.short$k.kut2 <- ordered(raw.short$kut2,levels = scale.zustimmung)
-raw.short$k.kut3 <- ordered(raw.short$kut3,levels = scale.zustimmung)
-raw.short$k.kut4 <- ordered(raw.short$kut4,levels = scale.zustimmung)
+scale.b0.zustimmungKUT <- c("Stimme völlig zu",
+                         
+                         "40",
+                         
+                         "41",
+                         
+                         "42",
+                         
+                         "43",
+                         
+                         "Stimme gar nicht zu")
+
+raw.short$k.kut1 <- ordered(raw.short$kut1,levels = scale.b0.zustimmungKUT)
+raw.short$k.kut2 <- ordered(raw.short$kut2,levels = scale.b0.zustimmungKUT)
+raw.short$k.kut3 <- ordered(raw.short$kut3,levels = scale.b0.zustimmungKUT)
+raw.short$k.kut4 <- ordered(raw.short$kut4,levels = scale.b0.zustimmungKUT)
 raw.short$we.Chancen <- ordered(raw.short$WE.Chancen,levels = scale.zustimmung)
 raw.short$we.Risiken <- ordered(raw.short$WE.Chancen,levels = scale.zustimmung)
 raw.short$we.Jobwechsel <- ordered(raw.short$WE.Jobwechsel,levels = scale.zustimmung)
@@ -154,9 +171,9 @@ raw.short$wlb.Erreichbarkeit <- ordered(raw.short$WLB.Erreichbarkeit,levels = sc
 scale.zustimmung2 <- c("Ich muss zur Arbeit", "Ich fühle mich Verpflichtet zur Arbeit zu gehen", "Ich möchte ungern zur Arbeit", "Ich möchte eher nicht zur Arbeit", "Ich sollte zur Arbeit", "Neutral", "Ich bin nicht abgeneigt zur Arbeit zu gehen", "Ich möchte eher arbeiten als nicht arbeiten", "Ich möchte zur Arbeit")
 
 
-schluesselliste <- list(DD= c("dd.Geschlecht","dd.Familienstand.", "dd.Alter","dd.Berufsstatus","dd.Ausbildung",
-                              "dd.Studiumsart", "dd.Jobbezeichnung", "dd.Arbeitsverhältnisart", "dd.Berufserfahrung", 
-                              "dd.Wochenarbeitsstunden", "dd.Urlaubstage", "dd.Überstundenabbau"),
+schluesselliste <- list(#DD= c("dd.Geschlecht","dd.Familienstand.", "dd.Alter","dd.Berufsstatus","dd.Ausbildung",
+                         #     "dd.Studiumsart", "dd.Jobbezeichnung", "dd.Arbeitsverhältnisart", "dd.Berufserfahrung", 
+                          #    "dd.Wochenarbeitsstunden", "dd.Urlaubstage", "dd.Überstundenabbau"),
                             
                             AM= c("am.Text", "am.Auswahl"),
                             FG= c("fg.Auswahl", "fg.Text"),
@@ -170,7 +187,8 @@ schluesselliste <- list(DD= c("dd.Geschlecht","dd.Familienstand.", "dd.Alter","d
                             KO= c("ko.Leistungsdruck Konkurrenz", "ko.Motivation Konkurrenz"),
                             WLB= c("wlb.Arbeit/PL", "wlb.Arbeit nach Feierabend", "wlb.Arbeitstier", "wlb.Emails Feierabend",
                                    "wlb.Familienmensch", "wlb.Gedanken Arbeit", "wlb.Genug Freizeit", "wlb.Hobbys", "wlb.Ruhephasen",
-                                   "wlb.Stress/Arbeit", "wlb.Stress/Umgang", "wlb.Vereinbarung A/PL", "wlb.Wunschfreizeit", "wlb.Erreichbarkeit")
+                                   "wlb.Stress/Arbeit", "wlb.Stress/Umgang", "wlb.Vereinbarung A/PL", "wlb.Wunschfreizeit", "wlb.Erreichbarkeit"),
+                            STRESS = c("wlb.Stress/Umgang", "wlb.Stress/Arbeit")
                                                     )
 
 scores<- scoreItems(schluesselliste, raw.short, missing=TRUE, min=1, max=6)
@@ -178,7 +196,7 @@ scores<- scoreItems(schluesselliste, raw.short, missing=TRUE, min=1, max=6)
 data <- bind_cols(raw.short, as_tibble(scores$scores))
 
 data<- data%>%
-  select(-starts_with("dd",ignore.case = F)) %>%
+ # select(-starts_with("dd",ignore.case = F)) %>%
   select(-starts_with("am",ignore.case = F)) %>%
   select(-starts_with("k",ignore.case = F)) %>%
   select(-starts_with("we",ignore.case = F)) %>%
@@ -187,7 +205,8 @@ data<- data%>%
   select(-starts_with("aa",ignore.case = F)) %>%
   select(-starts_with("am",ignore.case = F)) %>%
   select(-starts_with("ko",ignore.case = F)) %>%
-  select(-starts_with("wlb",ignore.case = F)) 
+  select(-starts_with("wlb",ignore.case = F))
+  
   
   
 saveRDS(data, "data/data.rds")
