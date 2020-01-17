@@ -18,17 +18,28 @@ library(psych)
 
 
 
-raw.short
+#raw.short
 
 
 
-schluesselliste <- list("Stress"= c("WLB.-Stress/Arbeit", "WLB.Stress/Umgang"))
+# schluesselliste <- list("Stress"= c("WLB.-Stress/Arbeit", "WLB.Stress/Umgang"))
+# 
+# scores <- scoreItems(schluesselliste, raw.short, missing= TRUE, min =1, max=6)
+# 
+# bind_cols(raw.short, as.tibble(scores$scores))
 
-scores <- scoreItems(schluesselliste, raw.short, missing= TRUE, min =1, max=6)
+data <- readRDS("data/data.rds")
 
-bind_cols(raw.short, as.tibble(scores$scores))
+data %>% 
+  filter(!is.na(Berufsstatus)) %>% 
+  filter(!is.na(Familienstand.)) %>% 
+  filter(!is.na(Geschlecht)) %>%  
+jmv::ANOVA(dep= "AA", factors= c("Berufsstatus", "Geschlecht"))
 
-ANOVA(data=raw.short, dep= "Stress", factors= c("Jobbezeichnung", "Familienstand."))
+  
+jmv::ANOVA(dep= "STRESS", factors= c("Berufsstatus", "Familienstand."))
+
+jmv::ANOVA(data, dep= "STRESS", factors= c("Geschlecht", "Berufsstatus"))
 
 
 ```
