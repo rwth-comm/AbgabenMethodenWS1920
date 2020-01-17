@@ -38,7 +38,7 @@ data %>%
   dplyr::filter(!is.na(Berufsstatus)) %>% 
   filter(!is.na(Familienstand.)) %>% 
   filter(!is.na(Geschlecht)) %>% 
-  jmv::ANOVA(dep= "AA", factors= c("Berufsstatus", "Geschlecht"))
+  jmv::ANOVA(dep= "STRESS", factors= c("Berufsstatus", "Geschlecht"))
 
 ```
 
