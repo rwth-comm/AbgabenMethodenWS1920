@@ -188,7 +188,7 @@ schluesselliste <- list(#DD= c("dd.Geschlecht","dd.Familienstand.", "dd.Alter","
                             WLB= c("wlb.Arbeit/PL", "wlb.Arbeit nach Feierabend", "wlb.Arbeitstier", "wlb.Emails Feierabend",
                                    "wlb.Familienmensch", "wlb.Gedanken Arbeit", "wlb.Genug Freizeit", "wlb.Hobbys", "wlb.Ruhephasen",
                                    "-wlb.Stress/Arbeit", "wlb.Stress/Umgang", "wlb.Vereinbarung A/PL", "wlb.Wunschfreizeit", "wlb.Erreichbarkeit"),
-                            STRESS = c("wlb.Stress/Umgang", "wlb.Stress/Arbeit")
+                            STRESS = c("wlb.Stress/Umgang", "-wlb.Stress/Arbeit")
                                                     )
 
 scores<- scoreItems(schluesselliste, raw.short, missing=TRUE, min=1, max=6)
