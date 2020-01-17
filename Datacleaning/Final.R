@@ -187,7 +187,7 @@ schluesselliste <- list(#DD= c("dd.Geschlecht","dd.Familienstand.", "dd.Alter","
                             KO= c("ko.Leistungsdruck Konkurrenz", "ko.Motivation Konkurrenz"),
                             WLB= c("wlb.Arbeit/PL", "wlb.Arbeit nach Feierabend", "wlb.Arbeitstier", "wlb.Emails Feierabend",
                                    "wlb.Familienmensch", "wlb.Gedanken Arbeit", "wlb.Genug Freizeit", "wlb.Hobbys", "wlb.Ruhephasen",
-                                   "wlb.Stress/Arbeit", "wlb.Stress/Umgang", "wlb.Vereinbarung A/PL", "wlb.Wunschfreizeit", "wlb.Erreichbarkeit"),
+                                   "-wlb.Stress/Arbeit", "wlb.Stress/Umgang", "wlb.Vereinbarung A/PL", "wlb.Wunschfreizeit", "wlb.Erreichbarkeit"),
                             STRESS = c("wlb.Stress/Umgang", "wlb.Stress/Arbeit")
                                                     )
 
