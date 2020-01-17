@@ -29,13 +29,20 @@ library(psych)
 # bind_cols(raw.short, as.tibble(scores$scores))
 
 data <- readRDS("data/data.rds")
+data <- data %>% 
+  filter(Geschlecht != "divers")
+data$Geschlecht <- fct_recode(data$Geschlecht,
+               "männlich" = "divers")
 
 data %>% 
-  filter(!is.na(Berufsstatus)) %>% 
+  dplyr::filter(!is.na(Berufsstatus)) %>% 
   filter(!is.na(Familienstand.)) %>% 
-  filter(!is.na(Geschlecht)) %>%  
-jmv::ANOVA(dep= "AA", factors= c("Berufsstatus", "Geschlecht"))
+  filter(!is.na(Geschlecht)) %>% 
+  jmv::ANOVA(dep= "AA", factors= c("Berufsstatus", "Geschlecht"))
 
+```
+
+```{r}
   
 jmv::ANOVA(dep= "STRESS", factors= c("Berufsstatus", "Familienstand."))
 

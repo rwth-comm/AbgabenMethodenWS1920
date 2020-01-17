@@ -210,6 +210,13 @@ data<- data%>%
   
   
 saveRDS(data, "data/data.rds")
+
+data <- data %>% 
+  filter(Geschlecht != "divers")
+data$Geschlecht <- fct_recode(data$Geschlecht,
+                              "männlich" = "divers")
+
+
   
 
 
